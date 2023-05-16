@@ -6,9 +6,9 @@ All components are written in [Composition API](https://vuejs.org/guide/extras/c
 
 ## How to Style in a Classy Way
 
-All visible elements of every component are easy to style with classes, in one of three ways:
+All visible elements of every component in this package are easy to style with classes. This can be done in one or more of these three ways:
 
-1. Style the class that relates to the target element in a parent component / stylesheet. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
+1. Style the class that relates to the target element with a CSS class selector. This could be done in a parent component and/or a stylesheet. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
 
 ```vue
 <template>
@@ -17,37 +17,53 @@ All visible elements of every component are easy to style with classes, in one o
 
 <style scoped>
 .classy-button-main {
+  color: black;
+  font-weight: 700;
   background-color: pink;
 }
 </style>
 ```
 
-2. Pass the class in as a prop. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
+2. Pass one or more classes in as a prop, and then style them as done in approach 1. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
 
 ```vue
 <template>
-  <ClassyButtonMain classy-button-main="my-style">BUTTON</ClassyButtonMain>
-</template>
-
-<style scoped>
-.my-style {
-  background-color: pink;
-}
-</style>
-```
-
-3. Pass a skin with the class in it as a prop. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
-
-```vue
-<template>
-  <ClassyButtonMain :skin="{ classyButtonMain: 'my-style' }"
+  <ClassyButtonMain classy-button-main="my-style my-other-style"
     >BUTTON</ClassyButtonMain
   >
 </template>
 
 <style scoped>
 .my-style {
+  color: black;
+  font-weight: 700;
   background-color: pink;
+}
+
+.my-other-style {
+  margin: 20px;
+}
+</style>
+```
+
+3. Pass a skin object, which contains classes for each inner class you wish to style, as a prop. e.g. for the Component 'ClassyButtonMain' and its core button element with class 'classy-button-main'
+
+```vue
+<template>
+  <ClassyButtonMain :skin="{ classyButtonMain: 'my-style my-other-style' }"
+    >BUTTON</ClassyButtonMain
+  >
+</template>
+
+<style scoped>
+.my-style {
+  color: black;
+  font-weight: 700;
+  background-color: pink;
+}
+
+.my-other-style {
+  margin: 20px;
 }
 </style>
 ```
@@ -60,7 +76,7 @@ Ways 2. and 3. are particularly inspired by the utility first CSS framework [Tai
 
 ## What's Coming Up
 
-I have built a large Vue Component Library before, and I have a clear vision for this one. All I need is time!
+I have a clear vision for this library, and am excited by what is possible.
 
 Here are some of the components I have in mind:
 
