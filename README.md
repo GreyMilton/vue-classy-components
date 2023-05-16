@@ -6,9 +6,9 @@ All components have been written in [Composition API](https://vuejs.org/guide/ex
 
 ## How to Style in a Classy Way
 
-All visible elements of every component in this package are easy to style with classes. This can be done in one, or a combination of, these three ways:
+This component library has specifically been built so that every component is as easy to style as possible. All visible elements of every component in this package can be accessed and styled in one of three ways (or a combination of):
 
-1. Style the class that relates to the target element with a CSS class selector. This could be done in a parent component and/or a stylesheet. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
+1. Style the class that relates to the target element with a CSS class selector. This can be done in a parent component and/or a stylesheet. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
 
 ```vue
 <template>
@@ -24,7 +24,7 @@ All visible elements of every component in this package are easy to style with c
 </style>
 ```
 
-2. Pass one or more classes in as a prop, and then style them as done in approach 1. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
+2. Pass one or more classes in as a prop. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
 
 ```vue
 <template>
@@ -46,7 +46,7 @@ All visible elements of every component in this package are easy to style with c
 </style>
 ```
 
-3. Pass a skin object, which contains classes for each inner class you wish to style, as a prop. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
+3. Pass a skin object as a prop. The skin should contain classes for each inner class you wish to style. e.g. for the Component 'ClassyButtonPrimary' and its core button element with class 'classy-button-primary'
 
 ```vue
 <template>
@@ -77,16 +77,16 @@ Ways 2. and 3. are particularly useful when using a utility first CSS framework 
 
 ## Current Components
 
-These are the components I have made already:
+These components are in the library now:
 
 - ClassyButtonPrimary
 - ClassyButtonSecondary
 
 ## What's Coming Up
 
-I have a clear vision for this library, and am excited by what is possible.
+It's early days, but I have a clear vision for this library, and am excited by what is possible.
 
-Here are some of the components I have in mind:
+Here are some of the components to be made soon:
 
 - ClassyInput
 - ClassySelect
