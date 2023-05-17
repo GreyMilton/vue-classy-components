@@ -13,38 +13,29 @@ const props = defineProps({
   skin: {
     type: Object,
     default: () => {
-      return {
-        classyButtonPrimary: 'classy-button-primary',
-      };
+      return {};
     },
   },
   classyButtonPrimary: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonPrimary
-        ? props.skin.classyButtonPrimary
-        : 'classy-button-primary',
+      props.skin.classyButtonPrimary ?? 'classy-button-primary',
   },
   classyButtonPrimaryReady: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonPrimaryReady
-        ? props.skin.classyButtonPrimaryReady
-        : 'classy-button-primary-ready',
+      props.skin.classyButtonPrimaryReady ?? 'classy-button-primary-ready',
   },
   classyButtonPrimaryWaiting: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonPrimaryWaiting
-        ? props.skin.classyButtonPrimaryWaiting
-        : 'classy-button-primary-waiting',
+      props.skin.classyButtonPrimaryWaiting ?? 'classy-button-primary-waiting',
   },
   classyButtonPrimaryDisabled: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonPrimaryDisabled
-        ? props.skin.classyButtonPrimaryDisabled
-        : 'classy-button-primary-disabled',
+      props.skin.classyButtonPrimaryDisabled ??
+      'classy-button-primary-disabled',
   },
 });
 

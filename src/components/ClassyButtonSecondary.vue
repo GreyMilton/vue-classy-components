@@ -13,38 +13,30 @@ const props = defineProps({
   skin: {
     type: Object,
     default: () => {
-      return {
-        classyButtonSecondary: 'classy-button-secondary',
-      };
+      return {};
     },
   },
   classyButtonSecondary: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonSecondary
-        ? props.skin.classyButtonSecondary
-        : 'classy-button-secondary',
+      props.skin.classyButtonSecondary ?? 'classy-button-secondary',
   },
   classyButtonSecondaryReady: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonSecondaryReady
-        ? props.skin.classyButtonSecondaryReady
-        : 'classy-button-secondary-ready',
+      props.skin.classyButtonSecondaryReady ?? 'classy-button-secondary-ready',
   },
   classyButtonSecondaryWaiting: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonSecondaryWaiting
-        ? props.skin.classyButtonSecondaryWaiting
-        : 'classy-button-secondary-waiting',
+      props.skin.classyButtonSecondaryWaiting ??
+      'classy-button-secondary-waiting',
   },
   classyButtonSecondaryDisabled: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonSecondaryDisabled
-        ? props.skin.classyButtonSecondaryDisabled
-        : 'classy-button-secondary-disabled',
+      props.skin.classyButtonSecondaryDisabled ??
+      'classy-button-secondary-disabled',
   },
 });
 
