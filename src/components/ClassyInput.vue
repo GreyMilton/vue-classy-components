@@ -148,7 +148,7 @@ const inputClasses = computed(() => {
       :class="inputClasses" />
     <div
       v-if="showValidationMessage"
-      :class="classyValidationMessage">
+      :class="classyInputValidationMessage">
       <slot name="validationMessage">Validation Message</slot>
     </div>
   </div>
