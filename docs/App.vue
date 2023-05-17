@@ -1,12 +1,14 @@
 <script setup>
 import ClassyButtonPrimary from '../src/components/ClassyButtonPrimary.vue';
 import ClassyButtonSecondary from '../src/components/ClassyButtonSecondary.vue';
+import ClassyInput from '../src/components/ClassyInput.vue';
 </script>
 
 <template>
   <div class="classy-div">
     <ClassyButtonSecondary>Cancel</ClassyButtonSecondary>
     <ClassyButtonPrimary>Submit</ClassyButtonPrimary>
+    <ClassyInput>Submit</ClassyInput>
   </div>
   <div class="classy-div">
     <ClassyButtonSecondary state="waiting">Cancel</ClassyButtonSecondary>
