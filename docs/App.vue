@@ -11,8 +11,8 @@ import ClassyInput from '../src/components/ClassyInput.vue';
     <ClassyInput>Submit</ClassyInput>
   </div>
   <div class="classy-div">
-    <ClassyButtonSecondary state="waiting">Cancel</ClassyButtonSecondary>
-    <ClassyButtonPrimary state="waiting">Submit</ClassyButtonPrimary>
+    <ClassyButtonSecondary state="loading">Cancel</ClassyButtonSecondary>
+    <ClassyButtonPrimary state="loading">Submit</ClassyButtonPrimary>
   </div>
   <div class="classy-div">
     <ClassyButtonSecondary state="disabled">Cancel</ClassyButtonSecondary>

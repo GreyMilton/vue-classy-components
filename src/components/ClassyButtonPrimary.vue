@@ -26,10 +26,10 @@ const props = defineProps({
     default: (props) =>
       props.skin.classyButtonPrimaryReady ?? 'classy-button-primary-ready',
   },
-  classyButtonPrimaryWaiting: {
+  classyButtonPrimaryLoading: {
     type: String,
     default: (props) =>
-      props.skin.classyButtonPrimaryWaiting ?? 'classy-button-primary-waiting',
+      props.skin.classyButtonPrimaryLoading ?? 'classy-button-primary-loading',
   },
   classyButtonPrimaryDisabled: {
     type: String,
@@ -42,7 +42,7 @@ const props = defineProps({
 const stateClasses = computed(() => {
   return {
     ready: props.classyButtonPrimaryReady,
-    waiting: props.classyButtonPrimaryWaiting,
+    loading: props.classyButtonPrimaryLoading,
     disabled: props.classyButtonPrimaryDisabled,
   };
 });
@@ -55,7 +55,7 @@ const classyState = computed(() => {
 <template>
   <button
     :type="type"
-    :disabled="state === 'disabled' || state === 'waiting'"
+    :disabled="state === 'disabled' || state === 'loading'"
     :class="[classyButtonPrimary, classyState]"
     class="remove-default">
     <slot />
@@ -96,7 +96,7 @@ const classyState = computed(() => {
   border-color: #370000;
 }
 
-.classy-button-primary-waiting {
+.classy-button-primary-loading {
   background-color: #845e68;
   border-color: #845e68;
   color: rgb(216, 216, 216);
