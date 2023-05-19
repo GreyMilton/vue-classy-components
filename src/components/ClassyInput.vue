@@ -33,6 +33,18 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
+  maxlength: {
+    type: [Number, String],
+    default: 524288,
+  },
+  autocapitalize: {
+    type: String,
+    default: 'off',
+  },
   showLabel: {
     type: Boolean,
     default: true,
@@ -122,10 +134,10 @@ const inputClasses = computed(() => {
         : props.classyInputEmptyDisabled,
     ];
   }
-
+  console.log('hello???');
   return [
     props.classyInput,
-    props.modelValue ? props.classyInputFilled : props.classyInputEmpty,
+    value.value ? props.classyInputFilled : props.classyInputEmpty,
   ];
 });
 </script>
@@ -144,8 +156,12 @@ const inputClasses = computed(() => {
       :type="type"
       :disabled="disabled"
       :required="required"
+      :readonly="readonly"
+      :maxlength="maxlength"
       :placeholder="placeholder"
-      :class="inputClasses" />
+      :autocapitalize="autocapitalize"
+      :class="inputClasses"
+      class="remove-default" />
     <div
       v-if="showValidationMessage"
       :class="classyInputValidationMessage">
@@ -155,47 +171,79 @@ const inputClasses = computed(() => {
 </template>
 
 <style scoped>
+.remove-default {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: text;
+  width: 100%;
+  height: auto;
+}
 .classy-input-container {
-  border: 1px solid green;
 }
 
 .classy-input-container-disabled {
-  border: 1px solid green;
 }
 .classy-input-label {
-  border: 1px solid green;
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
 }
 
 .classy-input-label-disabled {
-  border: 1px solid green;
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
 }
 .classy-input {
-  border: 1px solid green;
+  border: 2px solid #5b0017;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
 }
 
 .classy-input-disabled {
-  border: 1px solid green;
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #9c9c9c;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
 }
 .classy-input-empty {
-  border: 1px solid green;
+  border-color: #472a45;
 }
 
 .classy-input-empty-disabled {
-  border: 1px solid green;
+  border-color: rgb(0, 0, 0);
+  background-color: #9c9c9c;
 }
 .classy-input-filled {
-  border: 1px solid green;
+  border-color: rgb(0, 84, 0);
 }
 
 .classy-input-filled-disabled {
-  border: 1px solid green;
+  border-color: green;
 }
 
 .classy-input-validation-message {
-  border: 1px solid green;
+  color: rgb(194, 2, 2);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
 }
 
 .classy-input-validation-message-disabled {
-  border: 1px solid green;
+  color: rgb(55, 55, 55);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
 }
 </style>
