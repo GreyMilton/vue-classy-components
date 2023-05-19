@@ -84,16 +84,16 @@ const classyState = computed(() => {
 }
 
 .classy-button-primary-ready {
-  background-color: #5b0017;
-  border-color: #5b0017;
+  background-color: #472a45;
+  border-color: #472a32;
 }
 .classy-button-primary-ready:hover {
-  background-color: #540015;
-  border-color: #540015;
+  background-color: #372235;
+  border-color: #372235;
 }
 .classy-button-primary-ready:active {
-  background-color: #370000;
-  border-color: #370000;
+  background-color: #562a53;
+  border-color: #562a53;
 }
 
 .classy-button-primary-loading {
