@@ -2,13 +2,16 @@
 import ClassyButtonPrimary from '../src/components/ClassyButtonPrimary.vue';
 import ClassyButtonSecondary from '../src/components/ClassyButtonSecondary.vue';
 import ClassyInput from '../src/components/ClassyInput.vue';
+import { ref } from 'vue';
+
+const inputValue = ref('');
 </script>
 
 <template>
   <div class="classy-div">
     <ClassyButtonSecondary>Cancel</ClassyButtonSecondary>
     <ClassyButtonPrimary>Submit</ClassyButtonPrimary>
-    <ClassyInput>Submit</ClassyInput>
+    <ClassyInput v-model="inputValue">Submit</ClassyInput>
   </div>
   <div class="classy-div">
     <ClassyButtonSecondary state="loading">Cancel</ClassyButtonSecondary>
