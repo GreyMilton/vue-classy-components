@@ -1,5 +1,4 @@
 const { VueLoaderPlugin } = require('vue-loader');
-const path = require('path');
 
 module.exports = {
   codeSplit: false,
