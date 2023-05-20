@@ -58,7 +58,8 @@ const classyState = computed(() => {
     :type="type"
     :disabled="state === 'disabled' || state === 'loading'"
     :class="[classyButtonSecondary, classyState]"
-    class="remove-default">
+    class="remove-default"
+  >
     <slot />
   </button>
 </template>

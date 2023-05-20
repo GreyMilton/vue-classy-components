@@ -147,7 +147,8 @@ const inputClasses = computed(() => {
     <label
       v-if="showLabel"
       :for="id"
-      :class="disabled ? classyInputLabelDisabled : classyInputLabel">
+      :class="disabled ? classyInputLabelDisabled : classyInputLabel"
+    >
       <slot name="label">Label</slot>
     </label>
     <input
@@ -161,10 +162,12 @@ const inputClasses = computed(() => {
       :placeholder="placeholder"
       :autocapitalize="autocapitalize"
       :class="inputClasses"
-      class="remove-default" />
+      class="remove-default"
+    />
     <div
       v-if="showValidationMessage"
-      :class="classyInputValidationMessage">
+      :class="classyInputValidationMessage"
+    >
       <slot name="validationMessage">Validation Message</slot>
     </div>
   </div>
