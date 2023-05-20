@@ -188,9 +188,11 @@ const inputClasses = computed(() => {
   height: auto;
 }
 .classy-input-container {
+  background-color: white;
 }
 
 .classy-input-container-disabled {
+  background-color: white;
 }
 .classy-input-label {
   display: block;
