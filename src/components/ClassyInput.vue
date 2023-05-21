@@ -287,7 +287,13 @@ const classyInputState = computed(() => {
   background-color: white;
 }
 
+.classy-input-container-ready {
+  background-color: white;
+}
 .classy-input-container-disabled {
+  background-color: white;
+}
+.classy-input-container-readonly {
   background-color: white;
 }
 .classy-input-label {
@@ -296,7 +302,17 @@ const classyInputState = computed(() => {
   width: fit-content;
 }
 
+.classy-input-label-ready {
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
+}
 .classy-input-label-disabled {
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
+}
+.classy-input-label-readonly {
   display: block;
   padding: 0 12px 4px 0;
   width: fit-content;
@@ -308,7 +324,21 @@ const classyInputState = computed(() => {
   font-size: 0.9rem;
 }
 
+.classy-input-ready {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #9c9c9c;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+}
 .classy-input-disabled {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #9c9c9c;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+}
+.classy-input-readonly {
   border: 2px solid rgb(0, 0, 0);
   background-color: #9c9c9c;
   border-radius: 0.4rem;
@@ -319,7 +349,15 @@ const classyInputState = computed(() => {
   border-color: #472a45;
 }
 
+.classy-input-empty-ready {
+  border-color: rgb(0, 0, 0);
+  background-color: #9c9c9c;
+}
 .classy-input-empty-disabled {
+  border-color: rgb(0, 0, 0);
+  background-color: #9c9c9c;
+}
+.classy-input-empty-readonly {
   border-color: rgb(0, 0, 0);
   background-color: #9c9c9c;
 }
@@ -327,7 +365,13 @@ const classyInputState = computed(() => {
   border-color: rgb(0, 84, 0);
 }
 
+.classy-input-filled-ready {
+  border-color: green;
+}
 .classy-input-filled-disabled {
+  border-color: green;
+}
+.classy-input-filled-readonly {
   border-color: green;
 }
 
@@ -338,7 +382,19 @@ const classyInputState = computed(() => {
   padding: 6px 0 6px 0;
 }
 
+.classy-input-validation-message-ready {
+  color: rgb(55, 55, 55);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
+}
 .classy-input-validation-message-disabled {
+  color: rgb(55, 55, 55);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
+}
+.classy-input-validation-message-readonly {
   color: rgb(55, 55, 55);
   font-size: 0.7rem;
   font-style: italic;
