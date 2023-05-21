@@ -7,6 +7,10 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
+  state: {
+    type: String,
+    default: 'ready',
+  },
   skin: {
     type: Object,
     default: () => {
@@ -29,13 +33,17 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  disabled: {
-    type: Boolean,
-    default: false,
+  min: {
+    type: [Number, String],
+    default: 0,
   },
-  readonly: {
-    type: Boolean,
-    default: false,
+  max: {
+    type: [Number, String],
+    default: 524288,
+  },
+  minlength: {
+    type: [Number, String],
+    default: 0,
   },
   maxlength: {
     type: [Number, String],
@@ -58,47 +66,97 @@ const props = defineProps({
     default: (props) =>
       props.skin.classyInputContainer ?? 'classy-input-container',
   },
+  classyInputContainerReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputContainerReady ?? 'classy-input-container-ready',
+  },
   classyInputContainerDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputContainerDisabled ??
       'classy-input-container-disabled',
   },
+  classyInputContainerReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputContainerReadonly ??
+      'classy-input-container-readonly',
+  },
   classyInputLabel: {
     type: String,
     default: (props) => props.skin.classyInputLabel ?? 'classy-input-label',
+  },
+  classyInputLabelReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputLabelReady ?? 'classy-input-label-ready',
   },
   classyInputLabelDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputLabelDisabled ?? 'classy-input-label-disabled',
   },
+  classyInputLabelReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputLabelReadonly ?? 'classy-input-label-readonly',
+  },
   classyInput: {
     type: String,
     default: (props) => props.skin.classyInput ?? 'classy-input',
+  },
+  classyInputReady: {
+    type: String,
+    default: (props) => props.skin.classyInputReady ?? 'classy-input-ready',
   },
   classyInputDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputDisabled ?? 'classy-input-disabled',
   },
+  classyInputReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputReadonly ?? 'classy-input-readonly',
+  },
   classyInputEmpty: {
     type: String,
     default: (props) => props.skin.classyInputEmpty ?? 'classy-input-empty',
+  },
+  classyInputEmptyReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputEmptyReady ?? 'classy-input-empty-ready',
   },
   classyInputEmptyDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputEmptyDisabled ?? 'classy-input-empty-disabled',
   },
+  classyInputEmptyReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputEmptyReadonly ?? 'classy-input-empty-readonly',
+  },
   classyInputFilled: {
     type: String,
     default: (props) => props.skin.classyInputFilled ?? 'classy-input-filled',
+  },
+  classyInputFilledReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputFilledReady ?? 'classy-input-filled-ready',
   },
   classyInputFilledDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputFilledDisabled ?? 'classy-input-filled-disabled',
+  },
+  classyInputFilledReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputFilledReadonly ?? 'classy-input-filled-readonly',
   },
   classyInputValidationMessage: {
     type: String,
@@ -106,11 +164,23 @@ const props = defineProps({
       props.skin.classyInputValidationMessage ??
       'classy-input-validation-message',
   },
+  classyInputValidationMessageReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputValidationMessageReady ??
+      'classy-input-validation-message-ready',
+  },
   classyInputValidationMessageDisabled: {
     type: String,
     default: (props) =>
       props.skin.classyInputValidationMessageDisabled ??
       'classy-input-validation-message-disabled',
+  },
+  classyInputValidationMessageReadonly: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputValidationMessageReadonly ??
+      'classy-input-validation-message-readonly',
   },
 });
 
@@ -125,29 +195,46 @@ const value = computed({
   },
 });
 
-const inputClasses = computed(() => {
-  if (props.disabled) {
-    return [
-      props.classyInputDisabled,
-      props.modelValue
+const stateClasses = computed(() => {
+  return {
+    ready: {
+      container: props.classyInputContainerReady,
+      label: props.classyInputLabelReady,
+      input: value.value
+        ? props.classyInputFilledReady
+        : props.classyInputEmptyReady,
+      validationMessage: props.classyInputValidationMessageReady,
+    },
+    disabled: {
+      container: props.classyInputContainerDisabled,
+      label: props.classyInputLabelDisabled,
+      input: value.value
         ? props.classyInputFilledDisabled
         : props.classyInputEmptyDisabled,
-    ];
-  }
-  console.log('hello???');
-  return [
-    props.classyInput,
-    value.value ? props.classyInputFilled : props.classyInputEmpty,
-  ];
+      validationMessage: props.classyInputValidationMessageDisabled,
+    },
+    readonly: {
+      container: props.classyInputContainerReadonly,
+      label: props.classyInputLabelReadonly,
+      input: value.value
+        ? props.classyInputFilledReadonly
+        : props.classyInputEmptyReadonly,
+      validationMessage: props.classyInputValidationMessageReadonly,
+    },
+  };
+});
+
+const classyInputState = computed(() => {
+  return stateClasses[props.state];
 });
 </script>
 
 <template>
-  <div :class="disabled ? classyInputContainerDisabled : classyInputContainer">
+  <div :class="[classyInputContainer, classyInputState.container]">
     <label
       v-if="showLabel"
       :for="id"
-      :class="disabled ? classyInputLabelDisabled : classyInputLabel"
+      :class="[classyInputLabel, classyInputState.label]"
     >
       <slot name="label">Label</slot>
     </label>
@@ -155,18 +242,24 @@ const inputClasses = computed(() => {
       :id="id"
       v-model="value"
       :type="type"
-      :disabled="disabled"
       :required="required"
-      :readonly="readonly"
+      :readonly="state === 'readonly'"
+      :disabled="state === 'disabled'"
+      :min="min"
+      :max="max"
+      :minlength="minlength"
       :maxlength="maxlength"
       :placeholder="placeholder"
       :autocapitalize="autocapitalize"
-      :class="inputClasses"
+      :class="[classyInput, classyInputState.input]"
       class="remove-default"
     />
     <div
       v-if="showValidationMessage"
-      :class="classyInputValidationMessage"
+      :class="[
+        classyInputValidationMessage,
+        classyInputState.validationMessage,
+      ]"
     >
       <slot name="validationMessage">Validation Message</slot>
     </div>
