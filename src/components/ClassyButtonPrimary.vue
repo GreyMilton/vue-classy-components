@@ -2,35 +2,66 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+  /**
+   * Set the button type.
+   * @values button, submit, reset
+   */
   type: {
     type: String,
     default: 'submit',
   },
+  /**
+   * Set the state of the button.
+   * 'ready' - button's default resting state.
+   * 'disabled' - button is disabled.
+   * 'loading' - button is temporarily disabled and waiting for loading to finish.
+   * @values ready, disabled, loading
+   */
   state: {
     type: String,
     default: 'ready',
   },
+  /**
+   * Pass in a skin for the button. Each key of the object represents the target classy prop, and each value is a string of CSS classes.
+   * @values Object of classy props and their classes. E.g. { classyButtonPrimary: 'my-class', classyButtonPrimaryLoading: 'my-loading-class' }
+   */
   skin: {
     type: Object,
     default: () => {
       return {};
     },
   },
+  /**
+   * Style the button with CSS class(es).
+   * @values CSS class(es)
+   */
   classyButtonPrimary: {
     type: String,
     default: (props) =>
       props.skin.classyButtonPrimary ?? 'classy-button-primary',
   },
+  /**
+   * Style the button with CSS class(es) for its 'ready' state.
+   * @values CSS class(es)
+   */
   classyButtonPrimaryReady: {
     type: String,
     default: (props) =>
       props.skin.classyButtonPrimaryReady ?? 'classy-button-primary-ready',
   },
+  /**
+   * Style the button with CSS class(es) for its 'loading' state.
+   * @values CSS class(es)
+   */
   classyButtonPrimaryLoading: {
     type: String,
     default: (props) =>
       props.skin.classyButtonPrimaryLoading ?? 'classy-button-primary-loading',
   },
+  /**
+   * Style the button with CSS class(es) for its 'disabled' state.
+   * @values CSS class(es)
+   */
   classyButtonPrimaryDisabled: {
     type: String,
     default: (props) =>
@@ -59,6 +90,7 @@ const classyState = computed(() => {
     :class="[classyButtonPrimary, classyState]"
     class="remove-default"
   >
+    <!--  @slot Button text and/or other content goes here -->
     <slot />
   </button>
 </template>
