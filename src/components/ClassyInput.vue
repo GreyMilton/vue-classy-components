@@ -71,7 +71,7 @@ const props = defineProps({
    */
   min: {
     type: [Number, String],
-    default: 0,
+    default: '',
   },
   /**
    * Set a maximum value for the input.
@@ -79,7 +79,7 @@ const props = defineProps({
    */
   max: {
     type: [Number, String],
-    default: 524288,
+    default: '',
   },
   /**
    * Set a minimum length for the input value.
@@ -87,7 +87,7 @@ const props = defineProps({
    */
   minlength: {
     type: [Number, String],
-    default: 0,
+    default: '',
   },
   /**
    * Set a maximum length for the input value.
@@ -95,7 +95,7 @@ const props = defineProps({
    */
   maxlength: {
     type: [Number, String],
-    default: 524288,
+    default: '',
   },
   /**
    * Show / hide the label for the input.
