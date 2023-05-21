@@ -2,36 +2,67 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+  /**
+   * Set the button type.
+   * @values button, submit, reset
+   */
   type: {
     type: String,
     default: 'submit',
   },
+  /**
+   * Set the state of the button.
+   * 'ready' - button's default resting state.
+   * 'disabled' - button is disabled.
+   * 'loading' - button is temporarily disabled and waiting for loading to finish.
+   * @values ready, disabled, loading
+   */
   state: {
     type: String,
     default: 'ready',
   },
+  /**
+   * Pass in a skin for the button. Each key of the object represents the target classy prop, and each value is a string of CSS classes.
+   * @values Object of classy props and their classes. E.g. { classyButtonSecondary: 'my-class', classyButtonSecondaryLoading: 'my-loading-class' }
+   */
   skin: {
     type: Object,
     default: () => {
       return {};
     },
   },
+  /**
+   * Style the button with CSS class(es).
+   * @values CSS class(es)
+   */
   classyButtonSecondary: {
     type: String,
     default: (props) =>
       props.skin.classyButtonSecondary ?? 'classy-button-secondary',
   },
+  /**
+   * Style the button with CSS class(es) for its 'ready' state.
+   * @values CSS class(es)
+   */
   classyButtonSecondaryReady: {
     type: String,
     default: (props) =>
       props.skin.classyButtonSecondaryReady ?? 'classy-button-secondary-ready',
   },
+  /**
+   * Style the button with CSS class(es) for its 'loading' state.
+   * @values CSS class(es)
+   */
   classyButtonSecondaryLoading: {
     type: String,
     default: (props) =>
       props.skin.classyButtonSecondaryLoading ??
       'classy-button-secondary-loading',
   },
+  /**
+   * Style the button with CSS class(es) for its 'disabled' state.
+   * @values CSS class(es)
+   */
   classyButtonSecondaryDisabled: {
     type: String,
     default: (props) =>
@@ -60,6 +91,7 @@ const classyState = computed(() => {
     :class="[classyButtonSecondary, classyState]"
     class="remove-default"
   >
+    <!--  @slot Button text and/or other content goes here -->
     <slot />
   </button>
 </template>
