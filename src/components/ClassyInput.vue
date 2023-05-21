@@ -17,7 +17,9 @@ const props = defineProps({
    * 'ready' - input's default resting state.
    * 'disabled' - input is disabled.
    * 'readonly' - input is readonly.
-   * @values ready, disabled, readonly
+   * 'valid' - input value is valid.
+   * 'invalid' - input value is invalid.
+   * @values ready, disabled, readonly, valid, invalid
    */
   state: {
     type: String,
@@ -152,6 +154,25 @@ const props = defineProps({
       'classy-input-container-readonly',
   },
   /**
+   * Style the input's container with CSS class(es) when input value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputContainerValid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputContainerValid ?? 'classy-input-container-valid',
+  },
+  /**
+   * Style the input's container with CSS class(es) when input value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputContainerInvalid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputContainerInvalid ??
+      'classy-input-container-invalid',
+  },
+  /**
    * Style the input's label with CSS class(es)
    * @values CSS class(es)
    */
@@ -187,6 +208,24 @@ const props = defineProps({
       props.skin.classyInputLabelReadonly ?? 'classy-input-label-readonly',
   },
   /**
+   * Style the input's label with CSS class(es) when input value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputLabelValid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputLabelValid ?? 'classy-input-label-valid',
+  },
+  /**
+   * Style the input's label with CSS class(es) when input value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputLabelInvalid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputLabelInvalid ?? 'classy-input-label-invalid',
+  },
+  /**
    * Style the input with CSS class(es).
    * @values CSS class(es)
    */
@@ -219,6 +258,22 @@ const props = defineProps({
     type: String,
     default: (props) =>
       props.skin.classyInputReadonly ?? 'classy-input-readonly',
+  },
+  /**
+   * Style the input with CSS class(es) when its value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputValid: {
+    type: String,
+    default: (props) => props.skin.classyInputValid ?? 'classy-input-valid',
+  },
+  /**
+   * Style the input with CSS class(es) when its value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputInvalid: {
+    type: String,
+    default: (props) => props.skin.classyInputInvalid ?? 'classy-input-invalid',
   },
   /**
    * Style the input with CSS class(es) when empty.
@@ -256,6 +311,24 @@ const props = defineProps({
       props.skin.classyInputEmptyReadonly ?? 'classy-input-empty-readonly',
   },
   /**
+   * Style the input with CSS class(es) when empty and value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputEmptyValid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputEmptyValid ?? 'classy-input-empty-valid',
+  },
+  /**
+   * Style the input with CSS class(es) when empty and value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputEmptyInvalid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputEmptyInvalid ?? 'classy-input-empty-invalid',
+  },
+  /**
    * Style the input with CSS class(es) when filled.
    * @values CSS class(es)
    */
@@ -289,6 +362,24 @@ const props = defineProps({
     type: String,
     default: (props) =>
       props.skin.classyInputFilledReadonly ?? 'classy-input-filled-readonly',
+  },
+  /**
+   * Style the input with CSS class(es) when filled and value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputFilledValid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputFilledValid ?? 'classy-input-filled-valid',
+  },
+  /**
+   * Style the input with CSS class(es) when filled and value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputFilledInvalid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputFilledInvalid ?? 'classy-input-filled-invalid',
   },
   /**
    * Style the validation message below the input with CSS class(es).
@@ -329,6 +420,26 @@ const props = defineProps({
     default: (props) =>
       props.skin.classyInputValidationMessageReadonly ??
       'classy-input-validation-message-readonly',
+  },
+  /**
+   * Style the validation message below the input with CSS class(es) when input value is 'valid'.
+   * @values CSS class(es)
+   */
+  classyInputValidationMessageValid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputValidationMessageValid ??
+      'classy-input-validation-message-valid',
+  },
+  /**
+   * Style the validation message below the input with CSS class(es) when input value is 'invalid'.
+   * @values CSS class(es)
+   */
+  classyInputValidationMessageInvalid: {
+    type: String,
+    default: (props) =>
+      props.skin.classyInputValidationMessageInvalid ??
+      'classy-input-validation-message-invalid',
   },
 });
 
@@ -374,6 +485,22 @@ const stateClasses = computed(() => {
         ? props.classyInputFilledReadonly
         : props.classyInputEmptyReadonly,
       validationMessage: props.classyInputValidationMessageReadonly,
+    },
+    valid: {
+      container: props.classyInputContainerValid,
+      label: props.classyInputLabelValid,
+      input: value.value
+        ? props.classyInputFilledValid
+        : props.classyInputEmptyValid,
+      validationMessage: props.classyInputValidationMessageValid,
+    },
+    invalid: {
+      container: props.classyInputContainerInvalid,
+      label: props.classyInputLabelInvalid,
+      input: value.value
+        ? props.classyInputFilledInvalid
+        : props.classyInputEmptyInvalid,
+      validationMessage: props.classyInputValidationMessageInvalid,
     },
   };
 });
@@ -451,6 +578,12 @@ const classyInputState = computed(() => {
 .classy-input-container-readonly {
   background-color: white;
 }
+.classy-input-container-valid {
+  background-color: white;
+}
+.classy-input-container-invalid {
+  background-color: white;
+}
 .classy-input-label {
   display: block;
   padding: 0 12px 4px 0;
@@ -468,6 +601,16 @@ const classyInputState = computed(() => {
   width: fit-content;
 }
 .classy-input-label-readonly {
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
+}
+.classy-input-label-valid {
+  display: block;
+  padding: 0 12px 4px 0;
+  width: fit-content;
+}
+.classy-input-label-invalid {
   display: block;
   padding: 0 12px 4px 0;
   width: fit-content;
@@ -500,6 +643,20 @@ const classyInputState = computed(() => {
   padding: 4px 6px 4px 6px;
   font-size: 0.9rem;
 }
+.classy-input-valid {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #9c9c9c;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+}
+.classy-input-invalid {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #9c9c9c;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+}
 .classy-input-empty {
   border-color: #472a45;
 }
@@ -516,6 +673,14 @@ const classyInputState = computed(() => {
   border-color: rgb(0, 0, 0);
   background-color: #9c9c9c;
 }
+.classy-input-empty-valid {
+  border-color: rgb(0, 0, 0);
+  background-color: #9c9c9c;
+}
+.classy-input-empty-invalid {
+  border-color: rgb(0, 0, 0);
+  background-color: #9c9c9c;
+}
 .classy-input-filled {
   border-color: rgb(0, 84, 0);
 }
@@ -527,6 +692,12 @@ const classyInputState = computed(() => {
   border-color: green;
 }
 .classy-input-filled-readonly {
+  border-color: green;
+}
+.classy-input-filled-valid {
+  border-color: green;
+}
+.classy-input-filled-invalid {
   border-color: green;
 }
 
@@ -550,6 +721,18 @@ const classyInputState = computed(() => {
   padding: 6px 0 6px 0;
 }
 .classy-input-validation-message-readonly {
+  color: rgb(55, 55, 55);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
+}
+.classy-input-validation-message-valid {
+  color: rgb(55, 55, 55);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 6px 0 6px 0;
+}
+.classy-input-validation-message-invalid {
   color: rgb(55, 55, 55);
   font-size: 0.7rem;
   font-style: italic;
