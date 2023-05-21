@@ -97,10 +97,6 @@ const props = defineProps({
     type: [Number, String],
     default: 524288,
   },
-  autocapitalize: {
-    type: String,
-    default: 'off',
-  },
   /**
    * Show / hide the label for the input.
    * @values true, false
@@ -409,7 +405,6 @@ const classyInputState = computed(() => {
       :minlength="minlength"
       :maxlength="maxlength"
       :placeholder="placeholder"
-      :autocapitalize="autocapitalize"
       :class="[classyInput, classyInputState.input]"
       class="remove-default"
     />
