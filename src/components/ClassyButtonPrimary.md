@@ -23,7 +23,6 @@ A primary button with three states: 'ready', 'disabled', and 'loading'.
 .buttons {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   gap: 10px;
   width: fit-content;
 }
