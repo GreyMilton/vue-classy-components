@@ -506,7 +506,7 @@ const stateClasses = computed(() => {
 });
 
 const classyInputState = computed(() => {
-  return stateClasses[props.state];
+  return stateClasses.value[props.state];
 });
 </script>
 
