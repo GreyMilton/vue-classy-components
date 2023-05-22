@@ -1,8 +1,10 @@
 const { VueLoaderPlugin } = require('vue-loader');
+const path = require('node:path');
 
 module.exports = {
   codeSplit: false,
   copyCodeButton: true,
+  require: [path.join(__dirname, 'docs/style.css')],
   simpleEditor: false,
   title: 'Vue Classy Components',
   styleguideDir: 'docs_styleguidist',
