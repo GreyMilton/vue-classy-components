@@ -562,7 +562,7 @@ const classyInputEmptyOrFilled = computed(() => {
       ]"
     >
       <!-- @slot Validation message text goes here -->
-      <slot name="validationMessage">Validation Message</slot>
+      <slot name="validationMessage" />
     </div>
   </div>
 </template>
