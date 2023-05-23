@@ -465,41 +465,56 @@ const stateClasses = computed(() => {
     ready: {
       container: props.classyInputContainerReady,
       label: props.classyInputLabelReady,
-      input: value.value
-        ? props.classyInputFilledReady
-        : props.classyInputEmptyReady,
+      input: [
+        props.classyInputReady,
+        value.value
+          ? props.classyInputFilledReady
+          : props.classyInputEmptyReady,
+      ],
       validationMessage: props.classyInputValidationMessageReady,
     },
     disabled: {
       container: props.classyInputContainerDisabled,
       label: props.classyInputLabelDisabled,
-      input: value.value
-        ? props.classyInputFilledDisabled
-        : props.classyInputEmptyDisabled,
+      input: [
+        props.classyInputDisabled,
+        value.value
+          ? props.classyInputFilledDisabled
+          : props.classyInputEmptyDisabled,
+      ],
       validationMessage: props.classyInputValidationMessageDisabled,
     },
     readonly: {
       container: props.classyInputContainerReadonly,
       label: props.classyInputLabelReadonly,
-      input: value.value
-        ? props.classyInputFilledReadonly
-        : props.classyInputEmptyReadonly,
+      input: [
+        props.classyInputReadonly,
+        value.value
+          ? props.classyInputFilledReadonly
+          : props.classyInputEmptyReadonly,
+      ],
       validationMessage: props.classyInputValidationMessageReadonly,
     },
     valid: {
       container: props.classyInputContainerValid,
       label: props.classyInputLabelValid,
-      input: value.value
-        ? props.classyInputFilledValid
-        : props.classyInputEmptyValid,
+      input: [
+        props.classyInputValid,
+        value.value
+          ? props.classyInputFilledValid
+          : props.classyInputEmptyValid,
+      ],
       validationMessage: props.classyInputValidationMessageValid,
     },
     invalid: {
       container: props.classyInputContainerInvalid,
       label: props.classyInputLabelInvalid,
-      input: value.value
-        ? props.classyInputFilledInvalid
-        : props.classyInputEmptyInvalid,
+      input: [
+        props.classyInputInvalid,
+        value.value
+          ? props.classyInputFilledInvalid
+          : props.classyInputEmptyInvalid,
+      ],
       validationMessage: props.classyInputValidationMessageInvalid,
     },
   };
@@ -507,6 +522,10 @@ const stateClasses = computed(() => {
 
 const classyInputState = computed(() => {
   return stateClasses.value[props.state];
+});
+
+const classyInputEmptyOrFilled = computed(() => {
+  return value.value ? props.classyInputFilled : props.classyInputEmpty;
 });
 </script>
 
@@ -532,7 +551,7 @@ const classyInputState = computed(() => {
       :minlength="minlength"
       :maxlength="maxlength"
       :placeholder="placeholder"
-      :class="[classyInput, classyInputState.input]"
+      :class="[classyInput, classyInputEmptyOrFilled, classyInputState.input]"
       class="remove-default"
     />
     <div
@@ -570,172 +589,109 @@ const classyInputState = computed(() => {
 }
 
 .classy-input-container-ready {
-  background-color: white;
 }
 .classy-input-container-disabled {
-  background-color: white;
 }
 .classy-input-container-readonly {
-  background-color: white;
 }
 .classy-input-container-valid {
-  background-color: white;
 }
 .classy-input-container-invalid {
-  background-color: white;
 }
 .classy-input-label {
   display: block;
-  padding: 0 12px 4px 0;
+  padding: 0 12px 10px 0;
   width: fit-content;
 }
 
 .classy-input-label-ready {
-  display: block;
-  padding: 0 12px 4px 0;
-  width: fit-content;
 }
 .classy-input-label-disabled {
-  display: block;
-  padding: 0 12px 4px 0;
-  width: fit-content;
+  color: #585858;
 }
 .classy-input-label-readonly {
-  display: block;
-  padding: 0 12px 4px 0;
-  width: fit-content;
+  color: #585858;
 }
 .classy-input-label-valid {
-  display: block;
-  padding: 0 12px 4px 0;
-  width: fit-content;
 }
 .classy-input-label-invalid {
-  display: block;
-  padding: 0 12px 4px 0;
-  width: fit-content;
 }
 .classy-input {
-  border: 2px solid #5b0017;
+  border: 2px solid #565656;
   border-radius: 0.4rem;
   padding: 4px 6px 4px 6px;
   font-size: 0.9rem;
+  background-color: white;
+}
+.classy-input:focus {
+  outline: solid 5px rgb(234, 234, 252);
 }
 
 .classy-input-ready {
-  border: 2px solid rgb(0, 0, 0);
-  background-color: #9c9c9c;
-  border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
-  font-size: 0.9rem;
 }
 .classy-input-disabled {
-  border: 2px solid rgb(0, 0, 0);
-  background-color: #9c9c9c;
-  border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
-  font-size: 0.9rem;
+  border-color: #7a7a7a;
+  background-color: #e9e9e9;
+  color: #7a7a7a;
 }
 .classy-input-readonly {
-  border: 2px solid rgb(0, 0, 0);
-  background-color: #9c9c9c;
-  border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
-  font-size: 0.9rem;
+  border-color: #6b6b6b;
+  background-color: #e9e9e9;
+  color: #6b6b6b;
 }
 .classy-input-valid {
-  border: 2px solid rgb(0, 0, 0);
-  background-color: #9c9c9c;
-  border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
-  font-size: 0.9rem;
+  border-color: #009c0d;
 }
 .classy-input-invalid {
-  border: 2px solid rgb(0, 0, 0);
-  background-color: #9c9c9c;
-  border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
-  font-size: 0.9rem;
+  border-color: #a9012b;
 }
 .classy-input-empty {
-  border-color: #472a45;
 }
-
 .classy-input-empty-ready {
-  border-color: rgb(0, 0, 0);
-  background-color: #9c9c9c;
 }
 .classy-input-empty-disabled {
-  border-color: rgb(0, 0, 0);
-  background-color: #9c9c9c;
 }
 .classy-input-empty-readonly {
-  border-color: rgb(0, 0, 0);
-  background-color: #9c9c9c;
 }
 .classy-input-empty-valid {
-  border-color: rgb(0, 0, 0);
-  background-color: #9c9c9c;
 }
 .classy-input-empty-invalid {
-  border-color: rgb(0, 0, 0);
-  background-color: #9c9c9c;
 }
 .classy-input-filled {
-  border-color: rgb(0, 84, 0);
 }
 
 .classy-input-filled-ready {
-  border-color: green;
+  border-color: black;
 }
 .classy-input-filled-disabled {
-  border-color: green;
 }
 .classy-input-filled-readonly {
-  border-color: green;
 }
 .classy-input-filled-valid {
-  border-color: green;
 }
 .classy-input-filled-invalid {
-  border-color: green;
 }
 
 .classy-input-validation-message {
   color: rgb(194, 2, 2);
   font-size: 0.7rem;
   font-style: italic;
-  padding: 6px 0 6px 0;
+  padding: 8px 0 8px 0;
 }
 
 .classy-input-validation-message-ready {
   color: rgb(55, 55, 55);
-  font-size: 0.7rem;
-  font-style: italic;
-  padding: 6px 0 6px 0;
 }
 .classy-input-validation-message-disabled {
   color: rgb(55, 55, 55);
-  font-size: 0.7rem;
-  font-style: italic;
-  padding: 6px 0 6px 0;
 }
 .classy-input-validation-message-readonly {
   color: rgb(55, 55, 55);
-  font-size: 0.7rem;
-  font-style: italic;
-  padding: 6px 0 6px 0;
 }
 .classy-input-validation-message-valid {
-  color: rgb(55, 55, 55);
-  font-size: 0.7rem;
-  font-style: italic;
-  padding: 6px 0 6px 0;
+  color: rgb(22, 62, 0);
 }
 .classy-input-validation-message-invalid {
-  color: rgb(55, 55, 55);
-  font-size: 0.7rem;
-  font-style: italic;
-  padding: 6px 0 6px 0;
+  color: rgb(99, 0, 0);
 }
 </style>
