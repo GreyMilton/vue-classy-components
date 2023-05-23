@@ -27,6 +27,7 @@ export default {
   <div class="buttons">
     <ClassyInput v-model="readyValue">
       <template #label>Ready</template>
+      <template #validationMessage>Ready to go!</template>
     </ClassyInput>
 
     <ClassyInput
@@ -34,6 +35,7 @@ export default {
       state="disabled"
     >
       <template #label>Disabled</template>
+      <template #validationMessage>Disabled input</template>
     </ClassyInput>
 
     <ClassyInput
@@ -41,6 +43,7 @@ export default {
       state="readonly"
     >
       <template #label>Readonly</template>
+      <template #validationMessage>Readonly input</template>
     </ClassyInput>
 
     <ClassyInput
@@ -48,6 +51,7 @@ export default {
       state="valid"
     >
       <template #label>Valid</template>
+      <template #validationMessage>Valid input</template>
     </ClassyInput>
 
     <ClassyInput
@@ -55,6 +59,7 @@ export default {
       state="invalid"
     >
       <template #label>Invalid</template>
+      <template #validationMessage>Invalid input</template>
     </ClassyInput>
   </div>
 </template>
