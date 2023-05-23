@@ -13,7 +13,11 @@ A input with an optional label above and an optional validation message below. H
 export default {
   data() {
     return {
-      input: '',
+      readyValue: '',
+      disabledValue: 'this input is disabled',
+      readonlyValue: 'this input is readonly',
+      validValue: '',
+      invalidValue: '',
     };
   },
 };
@@ -21,33 +25,33 @@ export default {
 
 <template>
   <div class="buttons">
-    <ClassyInput v-model="input">
+    <ClassyInput v-model="readyValue">
       <template #label>Ready</template>
     </ClassyInput>
 
     <ClassyInput
-      v-model="input"
+      v-model="disabledValue"
       state="disabled"
     >
       <template #label>Disabled</template>
     </ClassyInput>
 
     <ClassyInput
-      v-model="input"
+      v-model="readonlyValue"
       state="readonly"
     >
       <template #label>Readonly</template>
     </ClassyInput>
 
     <ClassyInput
-      v-model="input"
+      v-model="validValue"
       state="valid"
     >
       <template #label>Valid</template>
     </ClassyInput>
 
     <ClassyInput
-      v-model="input"
+      v-model="invalidValue"
       state="invalid"
     >
       <template #label>Invalid</template>
