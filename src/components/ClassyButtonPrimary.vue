@@ -130,16 +130,16 @@ const classyState = computed(() => {
 }
 
 .classy-button-primary-loading {
-  background-color: #845e68;
-  border-color: #845e68;
-  color: rgb(216, 216, 216);
+  background-color: #6f5a6e;
+  border-color: #6f5a6e;
+  color: #ffffff;
   cursor: wait;
 }
 
 .classy-button-primary-disabled {
-  background-color: #845e68;
-  border-color: #845e68;
-  color: rgb(216, 216, 216);
+  background-color: #6f5a6e;
+  border-color: #6f5a6e;
+  color: #c8c8c8;
   cursor: not-allowed;
 }
 </style>
