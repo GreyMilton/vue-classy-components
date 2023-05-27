@@ -132,6 +132,9 @@ const classyState = computed(() => {
   border-color: #30000c;
   color: #30000c;
 }
+.classy-button-secondary-ready:focus-visible {
+  outline: #e6c96b solid 6px;
+}
 
 .classy-button-secondary-loading {
   background-color: #f8f8f8;
