@@ -624,7 +624,7 @@ const classyInputEmptyOrFilled = computed(() => {
   background-color: white;
 }
 .classy-input:focus-visible {
-  outline: #fbe394 solid 6px;
+  outline: #efd785 solid 6px;
 }
 
 .classy-input-ready {
