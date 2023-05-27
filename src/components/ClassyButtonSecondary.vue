@@ -134,14 +134,14 @@ const classyState = computed(() => {
 }
 
 .classy-button-secondary-loading {
-  background-color: rgb(250, 250, 250);
-  border-color: #a28c92;
-  color: #a28c92;
+  background-color: #f8f8f8;
+  border-color: #89787c;
+  color: #89787c;
   cursor: wait;
 }
 
 .classy-button-secondary-disabled {
-  background-color: rgb(250, 250, 250);
+  background-color: #f7f7f7;
   border-color: #a28c92;
   color: #a28c92;
   cursor: not-allowed;
