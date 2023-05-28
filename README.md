@@ -81,6 +81,7 @@ These components are in the library now:
 
 - ClassyButtonPrimary
 - ClassyButtonSecondary
+- ClassyInput
 
 ## What's Coming Up
 
@@ -88,7 +89,6 @@ It's early days, but I have a clear vision for this library, and am excited by w
 
 Here are some of the components to be made soon:
 
-- ClassyInput
 - ClassySelect
 - ClassyMultiSelect
 - ClassyButtonToggle
