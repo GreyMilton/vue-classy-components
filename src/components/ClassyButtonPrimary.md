@@ -181,13 +181,94 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: fit-content;
+}
+</style>
+```
+
+#### Style with your own classes and 'classy props'
+
+_Works well with [TailwindCSS](https://tailwindcss.com/)_
+
+```vue
+<template>
+  <div class="buttons">
+    <ClassyButtonPrimary
+      classy-button-primary="w-btn font-btn p-btn border-btn color-btn"
+      classy-button-primary-ready="ready"
+      >Ready</ClassyButtonPrimary
+    >
+    <ClassyButtonPrimary
+      classy-button-primary="w-btn font-btn p-btn border-btn color-btn"
+      classy-button-primary-disabled="disabled"
+      state="disabled"
+      >Disabled</ClassyButtonPrimary
+    >
+    <ClassyButtonPrimary
+      classy-button-primary="w-btn font-btn p-btn border-btn color-btn"
+      classy-button-primary-loading="loading"
+      state="loading"
+      >Loading</ClassyButtonPrimary
+    >
+  </div>
+</template>
+
+<style scoped>
+.w-btn {
+  width: 110px;
+}
+
+.font-btn {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+.p-btn {
+  padding: 1rem 1.1rem;
+}
+
+.border-btn {
+  border-radius: 4px;
+  border: none;
+}
+
+.color-btn {
+  color: #fafafa;
+}
+
+.ready {
+  background-color: #1e90ff;
+}
+
+.ready:hover {
+  background-color: #1e80ff;
+  color: white;
+}
+
+.ready:active {
+  background-color: #1e90ff;
+}
+
+.disabled {
+  background-color: #528ec9;
+  color: #dddddd;
+  cursor: not-allowed;
+}
+
+.loading {
+  background-color: #528ec9;
+  color: #eeeeee;
+  cursor: wait;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 </style>
 ```
 
 #### More examples coming soon:
 
-- Style with your own classes and 'classy props'
-- Completely re-style with a skin
+- Style with a skin
 - Style with a combination of approaches
