@@ -9,53 +9,57 @@ A primary button with three states: 'ready', 'disabled', and 'loading'.
 ```vue
 <script>
 export default {
-  data() {
+  setup() {
     return {
-      checked: false,
-      clicked: false,
-      step: 'unchecked',
-      stepData: {
+      stages: {
         unchecked: {
           state: 'disabled',
           text: 'Save',
-          message: 'Check the box above.',
+          message: 'Button is disabled. Check the box to enable.',
         },
         checked: {
           state: 'ready',
           text: 'Save',
-          message: 'Click to save.',
+          message: 'Button is ready. Click to save.',
         },
         saving: {
           state: 'loading',
           text: 'Saving',
-          message: 'Please wait.',
+          message: 'Button is loading. Please wait 3 seconds.',
         },
         saved: {
           state: 'disabled',
           text: 'Saved',
-          message: 'Click clear to start again.',
+          message: 'Button is disabled again. Click clear to start over.',
         },
       },
+    };
+  },
+  data() {
+    return {
+      checked: false,
+      clicked: false,
+      stage: 'unchecked',
     };
   },
   methods: {
     onSave() {
       this.clicked = true;
-      this.step = 'saving';
+      this.stage = 'saving';
       setTimeout(() => {
-        this.step = 'saved';
+        this.stage = 'saved';
       }, 3000);
     },
     onClear() {
       this.clicked = false;
       this.checked = false;
-      this.step = 'unchecked';
+      this.stage = 'unchecked';
     },
   },
   watch: {
     checked(value) {
       if (!this.clicked) {
-        this.step = value ? 'checked' : 'unchecked';
+        this.stage = value ? 'checked' : 'unchecked';
       }
     },
   },
@@ -76,13 +80,15 @@ export default {
     <ClassyButtonPrimary
       @click="onSave"
       type="submit"
-      :state="stepData[step].state"
-      >{{ stepData[step].text }}</ClassyButtonPrimary
+      :state="stages[stage].state"
+      >{{ stages[stage].text }}</ClassyButtonPrimary
     >
   </form>
-  <p style="font-style: italic;">{{ stepData[step].message }}</p>
+  <p style="font-style: italic; font-size: 14px">
+    {{ stages[stage].message }}
+  </p>
   <button
-    v-if="step === 'saved'"
+    v-if="stage === 'saved'"
     type="button"
     @click="onClear"
   >
