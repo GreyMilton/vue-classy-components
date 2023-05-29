@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div class="buttons">
+  <div class="inputs">
     <ClassyInput v-model="readyValue">
       <template #label>Ready</template>
       <template #validationMessage>Ready to go!</template>
@@ -65,7 +65,7 @@ export default {
 </template>
 
 <style scoped>
-.buttons {
+.inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
