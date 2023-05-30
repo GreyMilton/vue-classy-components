@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 
 const props = defineProps({
@@ -20,6 +20,14 @@ const props = defineProps({
   id: {
     type: String,
     default: () => 'classy-select-' + uuidv4(),
+  },
+  /**
+   * Set an id for the label of the select button
+   * @values unique string
+   */
+  labelId: {
+    type: String,
+    default: () => 'classy-select-label-' + uuidv4(),
   },
   /**
    * Pass in the select's value using v-model.
@@ -70,7 +78,15 @@ const props = defineProps({
    */
   placeholder: {
     type: String,
-    default: '',
+    default: 'placeholder',
+  },
+  /**
+   * Set a placeholder to show in the dropdown.
+   * @values valid string
+   */
+  dropdownPlaceholder: {
+    type: String,
+    default: (props) => props.placeholder,
   },
   /**
    * Show / hide the label for the select.
@@ -79,6 +95,14 @@ const props = defineProps({
   showLabel: {
     type: Boolean,
     default: true,
+  },
+  /**
+   * Show / hide a placeholder in the dropdown.
+   * @values true, false
+   */
+  showDropdownPlaceholder: {
+    type: Boolean,
+    default: false,
   },
   /**
    * Show / hide the validation message for the select.
@@ -106,42 +130,141 @@ const value = computed({
     emit('update:modelValue', value);
   },
 });
+
+const selectedOption = computed(() => {
+  return (
+    props.options.find(
+      (option) => option[props.optionValue] === value.value
+    ) ?? { [props.optionValue]: '', [props.optionText]: '' }
+  );
+});
+
+const selectButton = ref(null);
+const open = ref(false);
+
+function select(selectedValue) {
+  value.value = selectedValue;
+}
 </script>
 
 <template>
-  <label
+  <div
     v-if="showLabel"
-    :for="id"
+    :id="labelId"
+    @click="selectButton.focus()"
   >
     <!-- @slot Label text goes here -->
     <slot name="label">Label</slot>
-  </label>
-  <select
+  </div>
+
+  <button
     :id="id"
-    v-model="value"
+    ref="selectButton"
+    type="button"
     :required="required"
     :disabled="state === 'disabled'"
+    :aria-labelledBy="labelId"
+    class="button-remove-default button-position"
+    @click="open = !open"
   >
-    <option
-      disabled
-      selected
-      hidden
-      value=""
+    <!-- @slot Select's main button text goes here-->
+    <slot
+      name="button"
+      :selected-option="selectedOption"
+      :placeholder="placeholder"
+      >{{ value ? selectedOption[optionText] : placeholder }}</slot
     >
-      {{ placeholder }}
-    </option>
-    <option
-      v-for="(option, index) in options"
-      :key="index"
-      :value="option[optionValue]"
+
+    <!-- Invisible select (for making the select required in a form) -->
+    <select
+      :id="id"
+      v-model="value"
+      tabindex="-1"
+      aria-hidden="true"
+      :required="required"
+      :disabled="state === 'disabled'"
+      class="invisible-select"
+    >
+      <option
+        disabled
+        selected
+        hidden
+        value=""
+      >
+        {{ placeholder }}
+      </option>
+      <option
+        v-for="(option, index) in options"
+        :key="index"
+        :value="option[optionValue]"
+      >
+        {{ option[optionText] }}
+      </option>
+    </select>
+  </button>
+
+  <ul
+    v-show="open"
+    class="ul-remove-default"
+  >
+    <li
+      v-if="showDropdownPlaceholder"
+      class="li-remove-default"
+    >
+      {{ dropdownPlaceholder }}
+    </li>
+    <li
+      v-for="option in options"
+      :key="option[optionValue]"
+      class="li-remove-default"
+      @click="select(option[optionValue])"
     >
       {{ option[optionText] }}
-    </option>
-  </select>
+    </li>
+  </ul>
+
   <div v-if="showValidationMessage">
     <!-- @slot Validation message text goes here -->
     <slot name="validationMessage" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.button-position {
+  position: relative;
+}
+
+.button-remove-default {
+  padding: 0;
+  border: none;
+  margin: 0;
+  font: inherit;
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.invisible-select {
+  opacity: 0;
+  width: inherit;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ul-remove-default {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.li-remove-default {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+</style>
