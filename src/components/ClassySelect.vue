@@ -141,9 +141,39 @@ const selectedOption = computed(() => {
 
 const selectButton = ref(null);
 const open = ref(false);
+const highlightIndex = ref(-1);
 
 function select(selectedValue) {
   value.value = selectedValue;
+}
+
+const highlightedOption = computed(() => {
+  return (
+    props.options[highlightIndex.value] ?? {
+      [props.optionValue]: '',
+      [props.optionText]: '',
+    }
+  );
+});
+
+function toggleDropdown() {
+  highlightIndex.value =
+    open.value === false && props.options.length > 0 ? 0 : -1;
+  open.value = !open.value;
+}
+
+function highlightUp() {
+  highlightIndex.value =
+    highlightIndex.value > 0
+      ? highlightIndex.value - 1
+      : props.options.length - 1;
+}
+
+function highlightDown() {
+  highlightIndex.value =
+    highlightIndex.value > props.options.length - 2
+      ? 0
+      : highlightIndex.value + 1;
 }
 </script>
 
@@ -165,7 +195,10 @@ function select(selectedValue) {
     :disabled="state === 'disabled'"
     :aria-labelledBy="labelId"
     class="button-remove-default button-position"
-    @click="open = !open"
+    @click="toggleDropdown"
+    @keydown.up.prevent="highlightUp"
+    @keydown.down.prevent="highlightDown"
+    @keydown.enter.prevent="select(highlightedOption.value)"
   >
     <!-- @slot Select's main button text goes here-->
     <slot
