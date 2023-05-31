@@ -140,7 +140,7 @@ const selectedOption = computed(() => {
 });
 
 const selectButton = ref(null);
-const open = ref(false);
+const dropdownOpen = ref(false);
 const highlightIndex = ref(-1);
 
 function select(selectedValue) {
@@ -158,8 +158,8 @@ const highlightedOption = computed(() => {
 
 function toggleDropdown() {
   highlightIndex.value =
-    open.value === false && props.options.length > 0 ? 0 : -1;
-  open.value = !open.value;
+    dropdownOpen.value === false && props.options.length > 0 ? 0 : -1;
+  dropdownOpen.value = !dropdownOpen.value;
 }
 
 function highlightUp() {
@@ -237,7 +237,7 @@ function highlightDown() {
   </button>
 
   <ul
-    v-show="open"
+    v-show="dropdownOpen"
     class="ul-remove-default"
   >
     <li
