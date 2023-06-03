@@ -14,6 +14,16 @@ const props = defineProps({
     default: 'ready',
   },
   /**
+   * Pass in a skin for the select. Each key of the object represents the target classy prop, and each value is a string of CSS classes.
+   * @values Object of classy props and their classes. E.g. { classySelect: 'my-class', classySelectDisabled: 'my-disabled-class' }
+   */
+  skin: {
+    type: Object,
+    default: () => {
+      return {};
+    },
+  },
+  /**
    * Set an id for the underlying select.
    * @values unique string
    */
@@ -112,6 +122,151 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  classySelectContainer: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectContainer ?? 'classy-select-container',
+  },
+  classySelectContainerReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectContainerReady ?? 'classy-select-container-ready',
+  },
+  classySelectContainerDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectContainerDisabled ??
+      'classy-select-container-disabled',
+  },
+  classySelectLabel: {
+    type: String,
+    default: (props) => props.skin.classySelectLabel ?? 'classy-select-label',
+  },
+  classySelectLabelReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectLabelReady ?? 'classy-select-label-ready',
+  },
+  classySelectLabelDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectLabelDisabled ?? 'classy-select-label-disabled',
+  },
+  classySelect: {
+    type: String,
+    default: (props) => props.skin.classySelect ?? 'classy-select',
+  },
+  classySelectReady: {
+    type: String,
+    default: (props) => props.skin.classySelectReady ?? 'classy-select-ready',
+  },
+  classySelectDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDisabled ?? 'classy-select-disabled',
+  },
+  classySelectUnselected: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectUnselected ?? 'classy-select-unselected',
+  },
+  classySelectUnselectedReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectUnselectedReady ??
+      'classy-select-unselected-ready',
+  },
+  classySelectUnselectedDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectUnselectedDisabled ??
+      'classy-select-unselected-disabled',
+  },
+  classySelectSelected: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectSelected ?? 'classy-select-selected',
+  },
+  classySelectSelectedReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectSelectedReady ?? 'classy-select-selected-ready',
+  },
+  classySelectSelectedDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectSelectedDisabled ??
+      'classy-select-selected-disabled',
+  },
+  classySelectDropdown: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdown ?? 'classy-select-dropdown',
+  },
+  classySelectDropdownReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownReady ?? 'classy-select-dropdown-ready',
+  },
+  classySelectDropdownDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownDisabled ??
+      'classy-select-dropdown-disabled',
+  },
+  classySelectDropdownPlaceholder: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownPlaceholder ??
+      'classy-select-dropdown-placeholder',
+  },
+  classySelectDropdownPlaceholderReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownPlaceholderReady ??
+      'classy-select-dropdown-placeholder-ready',
+  },
+  classySelectDropdownPlaceholderDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownPlaceholderDisabled ??
+      'classy-select-dropdown-placeholder-disabled',
+  },
+  classySelectDropdownItem: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItem ?? 'classy-select-dropdown-item',
+  },
+  classySelectDropdownItemReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItemReady ??
+      'classy-select-dropdown-item-ready',
+  },
+  classySelectDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItemDisabled ??
+      'classy-select-dropdown-item-disabled',
+  },
+  classySelectValidationMessage: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidationMessage ??
+      'classy-select-validation-message',
+  },
+  classySelectValidationMessageReady: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidationMessageReady ??
+      'classy-select-validation-message-ready',
+  },
+  classySelectValidationMessageDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidationMessageDisabled ??
+      'classy-select-validation-message-disabled',
+  },
 });
 
 const emit = defineEmits([
@@ -175,90 +330,155 @@ function highlightDown() {
       ? 0
       : highlightIndex.value + 1;
 }
+
+const stateClasses = computed(() => {
+  return {
+    ready: {
+      container: props.classySelectContainerReady,
+      label: props.classySelectLabelReady,
+      select: [
+        props.classySelectReady,
+        value.value || value.value === 0
+          ? props.classySelectSelectedReady
+          : props.classySelectUnselectedReady,
+      ],
+      dropdown: props.classySelectDropdownReady,
+      dropdownPlaceholder: props.classySelectDropdownPlaceholderReady,
+      dropdownItem: props.classySelectDropdownItemReady,
+      validationMessage: props.classySelectValidationMessageReady,
+    },
+    disabled: {
+      container: props.classySelectContainerDisabled,
+      label: props.classySelectLabelDisabled,
+      select: [
+        props.classySelectDisabled,
+        value.value || value.value === 0
+          ? props.classySelectSelectedDisabled
+          : props.classySelectUnselectedDisabled,
+      ],
+      dropdown: props.classySelectDropdownDisabled,
+      dropdownPlaceholder: props.classySelectDropdownPlaceholderDisabled,
+      dropdownItem: props.classySelectDropdownItemDisabled,
+      validationMessage: props.classySelectValidationMessageDisabled,
+    },
+  };
+});
+
+const classySelectState = computed(() => {
+  return stateClasses.value[props.state];
+});
+
+const classySelectUnselectedOrSelected = computed(() => {
+  return value.value || value.value === 0
+    ? props.classySelectSelected
+    : props.classySelectUnselected;
+});
 </script>
 
 <template>
-  <div
-    v-if="showLabel"
-    :id="labelId"
-    @click="selectButton.focus()"
-  >
-    <!-- @slot Label text goes here -->
-    <slot name="label">Label</slot>
-  </div>
-
-  <button
-    :id="id"
-    ref="selectButton"
-    type="button"
-    :required="required"
-    :disabled="state === 'disabled'"
-    :aria-labelledBy="labelId"
-    class="button-remove-default button-position"
-    @click="toggleDropdown"
-    @keydown.up.prevent="highlightUp"
-    @keydown.down.prevent="highlightDown"
-    @keydown.enter.prevent="select(highlightedOption.value)"
-  >
-    <!-- @slot Select's main button text goes here-->
-    <slot
-      name="button"
-      :selected-option="selectedOption"
-      :placeholder="placeholder"
-      >{{ value ? selectedOption[optionText] : placeholder }}</slot
+  <div :class="[classySelectContainer, classySelectState.container]">
+    <div
+      v-if="showLabel"
+      :id="labelId"
+      :class="[classySelectLabel, classySelectState.label]"
+      @click="selectButton.focus()"
     >
+      <!-- @slot Label text goes here -->
+      <slot name="label">Label</slot>
+    </div>
 
-    <!-- Invisible select (for making the select required in a form) -->
-    <select
+    <button
       :id="id"
-      v-model="value"
-      tabindex="-1"
-      aria-hidden="true"
+      ref="selectButton"
+      type="button"
       :required="required"
       :disabled="state === 'disabled'"
-      class="invisible-select"
+      :aria-labelledBy="labelId"
+      class="button-remove-default button-position"
+      :class="[
+        classySelect,
+        classySelectUnselectedOrSelected,
+        classySelectState.select,
+      ]"
+      @click="toggleDropdown"
+      @keydown.up.prevent="highlightUp"
+      @keydown.down.prevent="highlightDown"
+      @keydown.enter.prevent="select(highlightedOption.value)"
     >
-      <option
-        disabled
-        selected
-        hidden
-        value=""
+      <!-- @slot Select's main button text goes here-->
+      <slot
+        name="button"
+        :selected-option="selectedOption"
+        :placeholder="placeholder"
+        >{{
+          value || value === 0 ? selectedOption[optionText] : placeholder
+        }}</slot
       >
-        {{ placeholder }}
-      </option>
-      <option
-        v-for="(option, index) in options"
-        :key="index"
-        :value="option[optionValue]"
+
+      <!-- Invisible select (for making the select required in a form) -->
+      <select
+        :id="id"
+        v-model="value"
+        tabindex="-1"
+        aria-hidden="true"
+        :required="required"
+        :disabled="state === 'disabled'"
+        class="invisible-select"
+      >
+        <option
+          disabled
+          selected
+          hidden
+          value=""
+        >
+          {{ placeholder }}
+        </option>
+        <option
+          v-for="(option, index) in options"
+          :key="index"
+          :value="option[optionValue]"
+        >
+          {{ option[optionText] }}
+        </option>
+      </select>
+    </button>
+
+    <ul
+      v-show="dropdownOpen"
+      class="ul-remove-default"
+      :class="[classySelectDropdown, classySelectState.dropdown]"
+    >
+      <li
+        v-if="showDropdownPlaceholder"
+        class="li-remove-default"
+        :class="[
+          classySelectDropdownPlaceholder,
+          classySelectState.dropdownPlaceholder,
+        ]"
+      >
+        {{ dropdownPlaceholder }}
+      </li>
+      <li
+        v-for="option in options"
+        :key="option[optionValue]"
+        class="li-remove-default"
+        :class="[classySelectDropdownItem, classySelectState.dropdownItem]"
+        @click="select(option[optionValue])"
       >
         {{ option[optionText] }}
-      </option>
-    </select>
-  </button>
+      </li>
+    </ul>
 
-  <ul
-    v-show="dropdownOpen"
-    class="ul-remove-default"
-  >
-    <li
-      v-if="showDropdownPlaceholder"
-      class="li-remove-default"
+    <div
+      v-if="showValidationMessage"
+      :class="[
+        classySelectValidationMessage,
+        classySelectState.validationMessage,
+      ]"
     >
-      {{ dropdownPlaceholder }}
-    </li>
-    <li
-      v-for="option in options"
-      :key="option[optionValue]"
-      class="li-remove-default"
-      @click="select(option[optionValue])"
-    >
-      {{ option[optionText] }}
-    </li>
-  </ul>
-
-  <div v-if="showValidationMessage">
-    <!-- @slot Validation message text goes here -->
-    <slot name="validationMessage" />
+      <!-- @slot Validation message text goes here -->
+      <slot name="validationMessage" />
+    </div>
   </div>
 </template>
 
@@ -299,5 +519,60 @@ function highlightDown() {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.classy-select-container {
+}
+.classy-select-container-ready {
+}
+.classy-select-container-disabled {
+}
+.classy-select-label {
+}
+.classy-select-label-ready {
+}
+.classy-select-label-disabled {
+}
+.classy-select {
+}
+.classy-select-ready {
+}
+.classy-select-disabled {
+}
+.classy-select-unselected {
+}
+.classy-select-unselected-ready {
+}
+.classy-select-unselected-disabled {
+}
+.classy-select-selected {
+}
+.classy-select-selected-ready {
+}
+.classy-select-selected-disabled {
+}
+.classy-select-dropdown {
+}
+.classy-select-dropdown-ready {
+}
+.classy-select-dropdown-disabled {
+}
+.classy-select-dropdown-placeholder {
+}
+.classy-select-dropdown-placeholder-ready {
+}
+.classy-select-dropdown-placeholder-disabled {
+}
+.classy-select-dropdown-item {
+}
+.classy-select-dropdown-item-ready {
+}
+.classy-select-dropdown-item-disabled {
+}
+.classy-select-validation-message {
+}
+.classy-select-validation-message-ready {
+}
+.classy-select-validation-message-disabled {
 }
 </style>
