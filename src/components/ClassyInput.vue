@@ -26,7 +26,7 @@ const props = defineProps({
     default: 'ready',
   },
   /**
-   * Pass in a skin for the button. Each key of the object represents the target classy prop, and each value is a string of CSS classes.
+   * Pass in a skin for the input. Each key of the object represents the target classy prop, and each value is a string of CSS classes.
    * @values Object of classy props and their classes. E.g. { classyInput: 'my-class', classyInputReadonly: 'my-readonly-class' }
    */
   skin: {
@@ -467,7 +467,7 @@ const stateClasses = computed(() => {
       label: props.classyInputLabelReady,
       input: [
         props.classyInputReady,
-        value.value
+        value.value || value.value === 0
           ? props.classyInputFilledReady
           : props.classyInputEmptyReady,
       ],
@@ -478,7 +478,7 @@ const stateClasses = computed(() => {
       label: props.classyInputLabelDisabled,
       input: [
         props.classyInputDisabled,
-        value.value
+        value.value || value.value === 0
           ? props.classyInputFilledDisabled
           : props.classyInputEmptyDisabled,
       ],
@@ -489,7 +489,7 @@ const stateClasses = computed(() => {
       label: props.classyInputLabelReadonly,
       input: [
         props.classyInputReadonly,
-        value.value
+        value.value || value.value === 0
           ? props.classyInputFilledReadonly
           : props.classyInputEmptyReadonly,
       ],
@@ -500,7 +500,7 @@ const stateClasses = computed(() => {
       label: props.classyInputLabelValid,
       input: [
         props.classyInputValid,
-        value.value
+        value.value || value.value === 0
           ? props.classyInputFilledValid
           : props.classyInputEmptyValid,
       ],
@@ -511,7 +511,7 @@ const stateClasses = computed(() => {
       label: props.classyInputLabelInvalid,
       input: [
         props.classyInputInvalid,
-        value.value
+        value.value || value.value === 0
           ? props.classyInputFilledInvalid
           : props.classyInputEmptyInvalid,
       ],
@@ -525,7 +525,9 @@ const classyInputState = computed(() => {
 });
 
 const classyInputEmptyOrFilled = computed(() => {
-  return value.value ? props.classyInputFilled : props.classyInputEmpty;
+  return value.value || value.value === 0
+    ? props.classyInputFilled
+    : props.classyInputEmpty;
 });
 </script>
 
