@@ -151,51 +151,51 @@ const props = defineProps({
     default: (props) =>
       props.skin.classySelectContainer ?? 'classy-select-container',
   },
-  classySelectContainerReady: {
+  classySelectReadyContainer: {
     type: String,
     default: (props) =>
-      props.skin.classySelectContainerReady ?? 'classy-select-container-ready',
+      props.skin.classySelectReadyContainer ?? 'classy-select-ready-container',
   },
-  classySelectContainerDisabled: {
+  classySelectDisabledContainer: {
     type: String,
     default: (props) =>
-      props.skin.classySelectContainerDisabled ??
-      'classy-select-container-disabled',
+      props.skin.classySelectDisabledContainer ??
+      'classy-select-disabled-container',
   },
-  classySelectContainerValid: {
+  classySelectValidContainer: {
     type: String,
     default: (props) =>
-      props.skin.classySelectContainerValid ?? 'classy-select-container-valid',
+      props.skin.classySelectValidContainer ?? 'classy-select-valid-container',
   },
-  classySelectContainerInvalid: {
+  classySelectInvalidContainer: {
     type: String,
     default: (props) =>
-      props.skin.classySelectContainerInvalid ??
-      'classy-select-container-invalid',
+      props.skin.classySelectInvalidContainer ??
+      'classy-select-invalid-container',
   },
   classySelectLabel: {
     type: String,
     default: (props) => props.skin.classySelectLabel ?? 'classy-select-label',
   },
-  classySelectLabelReady: {
+  classySelectReadyLabel: {
     type: String,
     default: (props) =>
-      props.skin.classySelectLabelReady ?? 'classy-select-label-ready',
+      props.skin.classySelectReadyLabel ?? 'classy-select-ready-label',
   },
-  classySelectLabelDisabled: {
+  classySelectDisabledLabel: {
     type: String,
     default: (props) =>
-      props.skin.classySelectLabelDisabled ?? 'classy-select-label-disabled',
+      props.skin.classySelectDisabledLabel ?? 'classy-select-disabled-label',
   },
-  classySelectLabelValid: {
+  classySelectValidLabel: {
     type: String,
     default: (props) =>
-      props.skin.classySelectLabelValid ?? 'classy-select-label-valid',
+      props.skin.classySelectValidLabel ?? 'classy-select-valid-label',
   },
-  classySelectLabelInvalid: {
+  classySelectInvalidLabel: {
     type: String,
     default: (props) =>
-      props.skin.classySelectLabelInvalid ?? 'classy-select-label-invalid',
+      props.skin.classySelectInvalidLabel ?? 'classy-select-invalid-label',
   },
   classySelect: {
     type: String,
@@ -280,27 +280,27 @@ const props = defineProps({
     default: (props) =>
       props.skin.classySelectDropdown ?? 'classy-select-dropdown',
   },
-  classySelectDropdownReady: {
+  classySelectReadyDropdown: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownReady ?? 'classy-select-dropdown-ready',
+      props.skin.classySelectReadyDropdown ?? 'classy-select-ready-dropdown',
   },
-  classySelectDropdownDisabled: {
+  classySelectDisabledDropdown: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownDisabled ??
-      'classy-select-dropdown-disabled',
+      props.skin.classySelectDisabledDropdown ??
+      'classy-select-disabled-dropdown',
   },
-  classySelectDropdownValid: {
+  classySelectValidDropdown: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownValid ?? 'classy-select-dropdown-valid',
+      props.skin.classySelectValidDropdown ?? 'classy-select-valid-dropdown',
   },
-  classySelectDropdownInvalid: {
+  classySelectInvalidDropdown: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownInvalid ??
-      'classy-select-dropdown-invalid',
+      props.skin.classySelectInvalidDropdown ??
+      'classy-select-invalid-dropdown',
   },
   classySelectDropdownPlaceholder: {
     type: String,
@@ -308,58 +308,58 @@ const props = defineProps({
       props.skin.classySelectDropdownPlaceholder ??
       'classy-select-dropdown-placeholder',
   },
-  classySelectDropdownPlaceholderReady: {
+  classySelectReadyDropdownPlaceholder: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownPlaceholderReady ??
-      'classy-select-dropdown-placeholder-ready',
+      props.skin.classySelectReadyDropdownPlaceholder ??
+      'classy-select-ready-dropdown-placeholder',
   },
-  classySelectDropdownPlaceholderDisabled: {
+  classySelectDisabledDropdownPlaceholder: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownPlaceholderDisabled ??
-      'classy-select-dropdown-placeholder-disabled',
+      props.skin.classySelectDisabledDropdownPlaceholder ??
+      'classy-select-disabled-dropdown-placeholder',
   },
-  classySelectDropdownPlaceholderValid: {
+  classySelectValidDropdownPlaceholder: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownPlaceholderValid ??
-      'classy-select-dropdown-placeholder-valid',
+      props.skin.classySelectValidDropdownPlaceholder ??
+      'classy-select-valid-dropdown-placeholder',
   },
-  classySelectDropdownPlaceholderInvalid: {
+  classySelectInvalidDropdownPlaceholder: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownPlaceholderInvalid ??
-      'classy-select-dropdown-placeholder-invalid',
+      props.skin.classySelectInvalidDropdownPlaceholder ??
+      'classy-select-invalid-dropdown-placeholder',
   },
   classySelectDropdownItem: {
     type: String,
     default: (props) =>
       props.skin.classySelectDropdownItem ?? 'classy-select-dropdown-item',
   },
-  classySelectDropdownItemReady: {
+  classySelectReadyDropdownItem: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownItemReady ??
-      'classy-select-dropdown-item-ready',
+      props.skin.classySelectReadyDropdownItem ??
+      'classy-select-ready-dropdown-item',
   },
-  classySelectDropdownItemDisabled: {
+  classySelectDisabledDropdownItem: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownItemDisabled ??
-      'classy-select-dropdown-item-disabled',
+      props.skin.classySelectDisabledDropdownItem ??
+      'classy-select-disabled-dropdown-item',
   },
-  classySelectDropdownItemValid: {
+  classySelectValidDropdownItem: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownItemValid ??
-      'classy-select-dropdown-item-valid',
+      props.skin.classySelectValidDropdownItem ??
+      'classy-select-valid-dropdown-item',
   },
-  classySelectDropdownItemInvalid: {
+  classySelectInvalidDropdownItem: {
     type: String,
     default: (props) =>
-      props.skin.classySelectDropdownItemInvalid ??
-      'classy-select-dropdown-item-invalid',
+      props.skin.classySelectInvalidDropdownItem ??
+      'classy-select-invalid-dropdown-item',
   },
   classySelectValidationMessage: {
     type: String,
@@ -367,29 +367,29 @@ const props = defineProps({
       props.skin.classySelectValidationMessage ??
       'classy-select-validation-message',
   },
-  classySelectValidationMessageReady: {
+  classySelectReadyValidationMessage: {
     type: String,
     default: (props) =>
-      props.skin.classySelectValidationMessageReady ??
-      'classy-select-validation-message-ready',
+      props.skin.classySelectReadyValidationMessage ??
+      'classy-select-ready-validation-message',
   },
-  classySelectValidationMessageDisabled: {
+  classySelectDisabledValidationMessage: {
     type: String,
     default: (props) =>
-      props.skin.classySelectValidationMessageDisabled ??
-      'classy-select-validation-message-disabled',
+      props.skin.classySelectDisabledValidationMessage ??
+      'classy-select-disabled-validation-message',
   },
-  classySelectValidationMessageValid: {
+  classySelectValidValidationMessage: {
     type: String,
     default: (props) =>
-      props.skin.classySelectValidationMessageValid ??
-      'classy-select-validation-message-valid',
+      props.skin.classySelectValidValidationMessage ??
+      'classy-select-valid-validation-message',
   },
-  classySelectValidationMessageInvalid: {
+  classySelectInvalidValidationMessage: {
     type: String,
     default: (props) =>
-      props.skin.classySelectValidationMessageInvalid ??
-      'classy-select-validation-message-invalid',
+      props.skin.classySelectInvalidValidationMessage ??
+      'classy-select-invalid-validation-message',
   },
 });
 
@@ -471,60 +471,60 @@ function highlightDown() {
 const stateClasses = computed(() => {
   return {
     ready: {
-      container: props.classySelectContainerReady,
-      label: props.classySelectLabelReady,
+      container: props.classySelectReadyContainer,
+      label: props.classySelectReadyLabel,
       select: [
         props.classySelectReady,
         value.value || value.value === 0
           ? props.classySelectSelectedReady
           : props.classySelectUnselectedReady,
       ],
-      dropdown: props.classySelectDropdownReady,
-      dropdownPlaceholder: props.classySelectDropdownPlaceholderReady,
-      dropdownItem: props.classySelectDropdownItemReady,
-      validationMessage: props.classySelectValidationMessageReady,
+      dropdown: props.classySelectReadyDropdown,
+      dropdownPlaceholder: props.classySelectReadyDropdownPlaceholder,
+      dropdownItem: props.classySelectReadyDropdownItem,
+      validationMessage: props.classySelectReadyValidationMessage,
     },
     disabled: {
-      container: props.classySelectContainerDisabled,
-      label: props.classySelectLabelDisabled,
+      container: props.classySelectDisabledContainer,
+      label: props.classySelectDisabledLabel,
       select: [
         props.classySelectDisabled,
         value.value || value.value === 0
           ? props.classySelectSelectedDisabled
           : props.classySelectUnselectedDisabled,
       ],
-      dropdown: props.classySelectDropdownDisabled,
-      dropdownPlaceholder: props.classySelectDropdownPlaceholderDisabled,
-      dropdownItem: props.classySelectDropdownItemDisabled,
-      validationMessage: props.classySelectValidationMessageDisabled,
+      dropdown: props.classySelectDisabledDropdown,
+      dropdownPlaceholder: props.classySelectDisabledDropdownPlaceholder,
+      dropdownItem: props.classySelectDisabledDropdownItem,
+      validationMessage: props.classySelectDisabledValidationMessage,
     },
     valid: {
-      container: props.classySelectContainerValid,
-      label: props.classySelectLabelValid,
+      container: props.classySelectValidContainer,
+      label: props.classySelectValidLabel,
       select: [
         props.classySelectValid,
         value.value || value.value === 0
           ? props.classySelectSelectedValid
           : props.classySelectUnselectedValid,
       ],
-      dropdown: props.classySelectDropdownValid,
-      dropdownPlaceholder: props.classySelectDropdownPlaceholderValid,
-      dropdownItem: props.classySelectDropdownItemValid,
-      validationMessage: props.classySelectValidationMessageValid,
+      dropdown: props.classySelectValidDropdown,
+      dropdownPlaceholder: props.classySelectValidDropdownPlaceholder,
+      dropdownItem: props.classySelectValidDropdownItem,
+      validationMessage: props.classySelectValidValidationMessage,
     },
     invalid: {
-      container: props.classySelectContainerInvalid,
-      label: props.classySelectLabelInvalid,
+      container: props.classySelectInvalidContainer,
+      label: props.classySelectInvalidLabel,
       select: [
         props.classySelectInvalid,
         value.value || value.value === 0
           ? props.classySelectSelectedInvalid
           : props.classySelectUnselectedInvalid,
       ],
-      dropdown: props.classySelectDropdownInvalid,
-      dropdownPlaceholder: props.classySelectDropdownPlaceholderInvalid,
-      dropdownItem: props.classySelectDropdownItemInvalid,
-      validationMessage: props.classySelectValidationMessageInvalid,
+      dropdown: props.classySelectInvalidDropdown,
+      dropdownPlaceholder: props.classySelectInvalidDropdownPlaceholder,
+      dropdownItem: props.classySelectInvalidDropdownItem,
+      validationMessage: props.classySelectInvalidValidationMessage,
     },
   };
 });
@@ -689,24 +689,24 @@ const classySelectUnselectedOrSelected = computed(() => {
 
 .classy-select-container {
 }
-.classy-select-container-ready {
+.classy-select-ready-container {
 }
-.classy-select-container-disabled {
+.classy-select-disabled-container {
 }
-.classy-select-container-valid {
+.classy-select-valid-container {
 }
-.classy-select-container-invalid {
+.classy-select-invalid-container {
 }
 
 .classy-select-label {
 }
-.classy-select-label-ready {
+.classy-select-ready-label {
 }
-.classy-select-label-disabled {
+.classy-select-disabled-label {
 }
-.classy-select-label-valid {
+.classy-select-valid-label {
 }
-.classy-select-label-invalid {
+.classy-select-invalid-label {
 }
 
 .classy-select {
@@ -744,45 +744,45 @@ const classySelectUnselectedOrSelected = computed(() => {
 
 .classy-select-dropdown {
 }
-.classy-select-dropdown-ready {
+.classy-select-ready-dropdown {
 }
-.classy-select-dropdown-disabled {
+.classy-select-disabled-dropdown {
 }
-.classy-select-dropdown-valid {
+.classy-select-valid-dropdown {
 }
-.classy-select-dropdown-invalid {
+.classy-select-invalid-dropdown {
 }
 
 .classy-select-dropdown-placeholder {
 }
-.classy-select-dropdown-placeholder-ready {
+.classy-select-ready-dropdown-placeholder {
 }
-.classy-select-dropdown-placeholder-disabled {
+.classy-select-disabled-dropdown-placeholder {
 }
-.classy-select-dropdown-placeholder-valid {
+.classy-select-valid-dropdown-placeholder {
 }
-.classy-select-dropdown-placeholder-invalid {
+.classy-select-invalid-dropdown-placeholder {
 }
 
 .classy-select-dropdown-item {
 }
-.classy-select-dropdown-item-ready {
+.classy-select-ready-dropdown-item {
 }
-.classy-select-dropdown-item-disabled {
+.classy-select-disabled-dropdown-item {
 }
-.classy-select-dropdown-item-valid {
+.classy-select-valid-dropdown-item {
 }
-.classy-select-dropdown-item-invalid {
+.classy-select-invalid-dropdown-item {
 }
 
 .classy-select-validation-message {
 }
-.classy-select-validation-message-ready {
+.classy-select-ready-validation-message {
 }
-.classy-select-validation-message-disabled {
+.classy-select-disabled-validation-message {
 }
-.classy-select-validation-message-valid {
+.classy-select-valid-validation-message {
 }
-.classy-select-validation-message-invalid {
+.classy-select-invalid-validation-message {
 }
 </style>
