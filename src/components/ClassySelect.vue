@@ -54,6 +54,8 @@ const props = defineProps({
    * Each option object must have at least two key/value pairs.
    * One to represent the identifying value of the option,
    * the other to represent the text display for the option.
+   * A third key/value pair, to disable the option when truthy, is optional.
+   * Options are enabled by default.
    * All options must have the same property names for the above.
    */
   options: {
@@ -75,6 +77,26 @@ const props = defineProps({
   optionText: {
     type: String,
     default: 'text',
+  },
+  /**
+   * Pass in a custom key for the 'disabled' key of all options.
+   * E.g. 'inactive'.
+   */
+  optionDisabled: {
+    type: String,
+    default: 'disabled',
+  },
+  /**
+   * An optional array of values in order to disable certain options.
+   * It is an array of optionValue values for each option to disable.
+   * This method can be used instead of, or in conjunction with, the other
+   * method used for disabling options: passing a key/value pair for
+   * disabling each option using the optionDisabled key.
+   * @values Array: [value-1, value-2, value-3...]
+   */
+  disabledOptions: {
+    type: Array,
+    default: () => [],
   },
   /**
    * Make the select required in a form.
@@ -400,13 +422,26 @@ const selectButton = ref(null);
 const dropdownOpen = ref(false);
 const highlightIndex = ref(-1);
 
-function select(selectedValue) {
-  value.value = selectedValue;
+function optionIsDisabled(option) {
+  return (
+    option[props.optionDisabled] ||
+    props.disabledOptions.includes(option[props.optionValue])
+  );
 }
+
+function select(option) {
+  if (!optionIsDisabled(option)) {
+    value.value = option[props.optionValue];
+  }
+}
+
+const enabledOptions = computed(() => {
+  return props.options.filter((option) => !optionIsDisabled(option));
+});
 
 const highlightedOption = computed(() => {
   return (
-    props.options[highlightIndex.value] ?? {
+    enabledOptions.value[highlightIndex.value] ?? {
       [props.optionValue]: '',
       [props.optionText]: '',
     }
@@ -415,7 +450,7 @@ const highlightedOption = computed(() => {
 
 function toggleDropdown() {
   highlightIndex.value =
-    dropdownOpen.value === false && props.options.length > 0 ? 0 : -1;
+    dropdownOpen.value === false && enabledOptions.value.length > 0 ? 0 : -1;
   dropdownOpen.value = !dropdownOpen.value;
 }
 
@@ -423,12 +458,12 @@ function highlightUp() {
   highlightIndex.value =
     highlightIndex.value > 0
       ? highlightIndex.value - 1
-      : props.options.length - 1;
+      : enabledOptions.value.length - 1;
 }
 
 function highlightDown() {
   highlightIndex.value =
-    highlightIndex.value > props.options.length - 2
+    highlightIndex.value > enabledOptions.value.length - 2
       ? 0
       : highlightIndex.value + 1;
 }
@@ -533,7 +568,7 @@ const classySelectUnselectedOrSelected = computed(() => {
       @click="toggleDropdown"
       @keydown.up.prevent="highlightUp"
       @keydown.down.prevent="highlightDown"
-      @keydown.enter.prevent="select(highlightedOption.value)"
+      @keydown.enter.prevent="select(highlightedOption)"
     >
       <!-- @slot Select's main button text goes here-->
       <slot
@@ -567,6 +602,7 @@ const classySelectUnselectedOrSelected = computed(() => {
           v-for="(option, index) in options"
           :key="index"
           :value="option[optionValue]"
+          :disabled="option[optionDisabled]"
         >
           {{ option[optionText] }}
         </option>
@@ -593,7 +629,7 @@ const classySelectUnselectedOrSelected = computed(() => {
         :key="option[optionValue]"
         class="li-remove-default"
         :class="[classySelectDropdownItem, classySelectState.dropdownItem]"
-        @click="select(option[optionValue])"
+        @click="select(option)"
       >
         {{ option[optionText] }}
       </li>
