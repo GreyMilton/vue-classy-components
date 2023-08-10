@@ -361,6 +361,96 @@ const props = defineProps({
       props.skin.classySelectInvalidDropdownItem ??
       'classy-select-invalid-dropdown-item',
   },
+  classySelectDropdownItemHighlighted: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItemHighlighted ??
+      'classy-select-dropdown-item-highlighted',
+  },
+  classySelectReadyDropdownItemHighlighted: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectReadyDropdownItemHighlighted ??
+      'classy-select-ready-dropdown-item-highlighted',
+  },
+  classySelectDisabledDropdownItemHighlighted: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDisabledDropdownItemHighlighted ??
+      'classy-select-disabled-dropdown-item-highlighted',
+  },
+  classySelectValidDropdownItemHighlighted: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidDropdownItemHighlighted ??
+      'classy-select-valid-dropdown-item-highlighted',
+  },
+  classySelectInvalidDropdownItemHighlighted: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectInvalidDropdownItemHighlighted ??
+      'classy-select-invalid-dropdown-item-highlighted',
+  },
+  classySelectDropdownItemEnabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItemEnabled ??
+      'classy-select-dropdown-item-enabled',
+  },
+  classySelectReadyDropdownItemEnabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectReadyDropdownItemEnabled ??
+      'classy-select-ready-dropdown-item-enabled',
+  },
+  classySelectDisabledDropdownItemEnabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDisabledDropdownItemEnabled ??
+      'classy-select-disabled-dropdown-item-enabled',
+  },
+  classySelectValidDropdownItemEnabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidDropdownItemEnabled ??
+      'classy-select-valid-dropdown-item-enabled',
+  },
+  classySelectInvalidDropdownItemEnabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectInvalidDropdownItemEnabled ??
+      'classy-select-invalid-dropdown-item-enabled',
+  },
+  classySelectDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDropdownItemDisabled ??
+      'classy-select-dropdown-item-disabled',
+  },
+  classySelectReadyDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectReadyDropdownItemDisabled ??
+      'classy-select-ready-dropdown-item-disabled',
+  },
+  classySelectDisabledDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectDisabledDropdownItemDisabled ??
+      'classy-select-disabled-dropdown-item-disabled',
+  },
+  classySelectValidDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectValidDropdownItemDisabled ??
+      'classy-select-valid-dropdown-item-disabled',
+  },
+  classySelectInvalidDropdownItemDisabled: {
+    type: String,
+    default: (props) =>
+      props.skin.classySelectInvalidDropdownItemDisabled ??
+      'classy-select-invalid-dropdown-item-disabled',
+  },
   classySelectValidationMessage: {
     type: String,
     default: (props) =>
@@ -429,6 +519,10 @@ function optionIsDisabled(option) {
   );
 }
 
+function optionIsHighlighted(option) {
+  return option[props.optionValue] === highlightedOption[props.optionValue];
+}
+
 function select(option) {
   if (!optionIsDisabled(option)) {
     value.value = option[props.optionValue];
@@ -482,6 +576,9 @@ const stateClasses = computed(() => {
       dropdown: props.classySelectReadyDropdown,
       dropdownPlaceholder: props.classySelectReadyDropdownPlaceholder,
       dropdownItem: props.classySelectReadyDropdownItem,
+      dropdownItemHighlighted: props.classySelectReadyDropdownItemHighlighted,
+      dropdownItemEnabled: props.classySelectReadyDropdownItemEnabled,
+      dropdownItemDisabled: props.classySelectReadyDropdownItemDisabled,
       validationMessage: props.classySelectReadyValidationMessage,
     },
     disabled: {
@@ -496,6 +593,10 @@ const stateClasses = computed(() => {
       dropdown: props.classySelectDisabledDropdown,
       dropdownPlaceholder: props.classySelectDisabledDropdownPlaceholder,
       dropdownItem: props.classySelectDisabledDropdownItem,
+      dropdownItemHighlighted:
+        props.classySelectDisabledDropdownItemHighlighted,
+      dropdownItemEnabled: props.classySelectDisabledDropdownItemEnabled,
+      dropdownItemDisabled: props.classySelectDisabledDropdownItemDisabled,
       validationMessage: props.classySelectDisabledValidationMessage,
     },
     valid: {
@@ -510,6 +611,9 @@ const stateClasses = computed(() => {
       dropdown: props.classySelectValidDropdown,
       dropdownPlaceholder: props.classySelectValidDropdownPlaceholder,
       dropdownItem: props.classySelectValidDropdownItem,
+      dropdownItemHighlighted: props.classySelectValidDropdownItemHighlighted,
+      dropdownItemEnabled: props.classySelectValidDropdownItemEnabled,
+      dropdownItemDisabled: props.classySelectValidDropdownItemDisabled,
       validationMessage: props.classySelectValidValidationMessage,
     },
     invalid: {
@@ -524,6 +628,9 @@ const stateClasses = computed(() => {
       dropdown: props.classySelectInvalidDropdown,
       dropdownPlaceholder: props.classySelectInvalidDropdownPlaceholder,
       dropdownItem: props.classySelectInvalidDropdownItem,
+      dropdownItemHighlighted: props.classySelectInvalidDropdownItemHighlighted,
+      dropdownItemEnabled: props.classySelectInvalidDropdownItemEnabled,
+      dropdownItemDisabled: props.classySelectInvalidDropdownItemDisabled,
       validationMessage: props.classySelectInvalidValidationMessage,
     },
   };
@@ -538,6 +645,24 @@ const classySelectUnselectedOrSelected = computed(() => {
     ? props.classySelectSelected
     : props.classySelectUnselected;
 });
+
+function optionClasses(option) {
+  if (optionIsDisabled(option)) {
+    return [
+      props.classySelectDropdownItemDisabled,
+      classySelectState.value.dropdownItemDisabled,
+    ];
+  } else if (optionIsHighlighted(option)) {
+    return [
+      props.classySelectDropdownItemHighlighted,
+      classySelectState.value.dropdownItemHighlighted,
+    ];
+  }
+  return [
+    props.classySelectDropdownItemEnabled,
+    classySelectState.value.dropdownItemEnabled,
+  ];
+}
 </script>
 
 <template>
@@ -563,7 +688,7 @@ const classySelectUnselectedOrSelected = computed(() => {
       :class="[
         classySelect,
         classySelectUnselectedOrSelected,
-        classySelectState.select,
+        ...classySelectState.select,
       ]"
       @click="toggleDropdown"
       @keydown.up.prevent="highlightUp"
@@ -628,7 +753,11 @@ const classySelectUnselectedOrSelected = computed(() => {
         v-for="option in options"
         :key="option[optionValue]"
         class="li-remove-default"
-        :class="[classySelectDropdownItem, classySelectState.dropdownItem]"
+        :class="[
+          classySelectDropdownItem,
+          classySelectState.dropdownItem,
+          ...optionClasses(option),
+        ]"
         @click="select(option)"
       >
         {{ option[optionText] }}
@@ -773,6 +902,39 @@ const classySelectUnselectedOrSelected = computed(() => {
 .classy-select-valid-dropdown-item {
 }
 .classy-select-invalid-dropdown-item {
+}
+
+.classy-select-dropdown-item-highlighted {
+}
+.classy-select-ready-dropdown-item-highlighted {
+}
+.classy-select-disabled-dropdown-item-highlighted {
+}
+.classy-select-valid-dropdown-item-highlighted {
+}
+.classy-select-invalid-dropdown-item-highlighted {
+}
+
+.classy-select-dropdown-item-enabled {
+}
+.classy-select-ready-dropdown-item-enabled {
+}
+.classy-select-disabled-dropdown-item-enabled {
+}
+.classy-select-valid-dropdown-item-enabled {
+}
+.classy-select-invalid-dropdown-item-enabled {
+}
+
+.classy-select-dropdown-item-disabled {
+}
+.classy-select-ready-dropdown-item-disabled {
+}
+.classy-select-disabled-dropdown-item-disabled {
+}
+.classy-select-valid-dropdown-item-disabled {
+}
+.classy-select-invalid-dropdown-item-disabled {
 }
 
 .classy-select-validation-message {
