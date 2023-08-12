@@ -25,7 +25,10 @@ export default {
 
 <template>
   <div class="inputs">
-    <ClassyInput v-model="readyValue">
+    <ClassyInput
+      v-model="readyValue"
+      placeholder="Type here..."
+    >
       <template #label>Ready</template>
       <template #validationMessage>Ready to go!</template>
     </ClassyInput>
