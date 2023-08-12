@@ -631,6 +631,9 @@ const classyInputEmptyOrFilled = computed(() => {
 
 .classy-input-ready {
 }
+.classy-input-ready::placeholder {
+  color: #7a7a7a;
+}
 .classy-input-disabled {
   border-color: #7a7a7a;
   background-color: #e9e9e9;
@@ -659,9 +662,9 @@ const classyInputEmptyOrFilled = computed(() => {
 }
 .classy-input-empty-invalid {
 }
+
 .classy-input-filled {
 }
-
 .classy-input-filled-ready {
   border-color: black;
 }
