@@ -4,10 +4,6 @@ A select with an optional label above and an optional validation message below. 
 
 ### Examples
 
-#### States
-
-'ready', 'disabled'
-
 ```vue
 <script>
 export default {
@@ -15,37 +11,57 @@ export default {
     return {
       options: [
         {
-          value: 1,
-          text: 'One',
+          value: 'ready',
+          text: 'Option 1',
         },
         {
-          value: 2,
-          text: 'Two',
+          value: 'valid',
+          text: 'Valid',
         },
         {
-          value: 3,
-          text: 'Three',
+          value: 'invalid',
+          text: 'Invalid',
         },
       ],
     };
   },
   data() {
     return {
-      readyValue: '',
+      value: '',
       disabledValue: '',
+      readyLabel: 'Ready',
+      validLabel: 'Valid',
+      invalidLabel: 'Invalid',
     };
   },
+  computed: {
+    state() {
+      return this.value ? this.value : 'ready';
+    },
+    validationMessage() {
+      if (this.value === 'option-1') {
+        return 'Option selected!';
+      } else if(this.value === 'valid') {
+        return 'Valid selection!';
+      } else if(this.value === 'invalid') {
+        return 'Invalid selection!';
+      }
+
+      return 'Ready to go!';
+    },
+  }
 };
 </script>
 
 <template>
   <div class="selects">
     <ClassySelect
-      v-model="readyValue"
+      :state="state"
+      v-model="value"
       :options="options"
     >
-      <template #label>Ready</template>
-      <template #validationMessage>Ready to go!</template>
+      <template #label>Select</template>
+      <template #validationMessage>{{ validationMessage }}</template>
     </ClassySelect>
 
     <ClassySelect
@@ -54,9 +70,8 @@ export default {
       :options="options"
     >
       <template #label>Disabled</template>
-      <template #validationMessage>Disabled input</template>
+      <template #validationMessage>Disabled select</template>
     </ClassySelect>
-  </div>
 </template>
 
 <style scoped>
