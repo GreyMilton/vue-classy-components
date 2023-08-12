@@ -817,6 +817,7 @@ function optionClasses(option) {
 }
 
 .classy-select-container {
+  background-color: white;
 }
 .classy-select-ready-container {
 }
@@ -828,10 +829,14 @@ function optionClasses(option) {
 }
 
 .classy-select-label {
+  display: block;
+  padding: 0 12px 10px 0;
+  width: fit-content;
 }
 .classy-select-ready-label {
 }
 .classy-select-disabled-label {
+  color: #585858;
 }
 .classy-select-valid-label {
 }
@@ -839,17 +844,35 @@ function optionClasses(option) {
 }
 
 .classy-select {
+  text-align: left;
+  border: 2px solid #565656;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+  background-color: white;
+  width: 100%;
+}
+.classy-select:focus-visible {
+  outline: #efd785 solid 6px;
 }
 .classy-select-ready {
 }
 .classy-select-disabled {
+  border-color: #7a7a7a;
+  background-color: #e9e9e9;
+  color: #7a7a7a;
 }
 .classy-select-valid {
+  color: rgb(22, 62, 0);
+  border-color: #009c0d;
 }
 .classy-select-invalid {
+  color: rgb(99, 0, 0);
+  border-color: #a9012b;
 }
 
 .classy-select-unselected {
+  color: #7a7a7a;
 }
 .classy-select-unselected-ready {
 }
@@ -863,6 +886,7 @@ function optionClasses(option) {
 .classy-select-selected {
 }
 .classy-select-selected-ready {
+  border-color: black;
 }
 .classy-select-selected-disabled {
 }
@@ -872,6 +896,11 @@ function optionClasses(option) {
 }
 
 .classy-select-dropdown {
+  border: 2px solid #565656;
+  border-radius: 0.4rem;
+  padding: 4px 6px 4px 6px;
+  font-size: 0.9rem;
+  background-color: white;
 }
 .classy-select-ready-dropdown {
 }
@@ -938,13 +967,21 @@ function optionClasses(option) {
 }
 
 .classy-select-validation-message {
+  color: rgb(194, 2, 2);
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 8px 0 8px 0;
 }
 .classy-select-ready-validation-message {
+  color: rgb(55, 55, 55);
 }
 .classy-select-disabled-validation-message {
+  color: rgb(55, 55, 55);
 }
 .classy-select-valid-validation-message {
+  color: rgb(22, 62, 0);
 }
 .classy-select-invalid-validation-message {
+  color: rgb(99, 0, 0);
 }
 </style>
