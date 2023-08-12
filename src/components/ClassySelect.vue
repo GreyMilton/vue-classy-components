@@ -9,7 +9,7 @@ const props = defineProps({
    * 'disabled' - select is disabled.
    * 'valid' - the select's value is valid.
    * 'invalid' - the select's value is invalid.
-   * @values ready, disabled
+   * @values ready, disabled, valid, invalid
    */
   state: {
     type: String,
