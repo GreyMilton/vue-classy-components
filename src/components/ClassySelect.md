@@ -1,6 +1,6 @@
 ### About
 
-A select with an optional label above and an optional validation message below. Has two states: 'ready' and 'disabled'.
+A select with an optional label above and an optional validation message below. Has four states: 'ready', 'disabled', 'valid' and 'invalid'.
 
 ### Examples
 
