@@ -79,7 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: fit-content;
+  width: 201px;
 }
 </style>
 ```
