@@ -698,15 +698,33 @@ function optionClasses(option) {
       @keydown.down.prevent="highlightDown"
       @keydown.enter.prevent="select(highlightedOption)"
     >
-      <!-- @slot Select's main button text goes here-->
+      <!-- @slot Select's main button content goes here-->
       <slot
         name="button"
         :selected-option="selectedOption"
         :placeholder="placeholder"
-        >{{
-          value || value === 0 ? selectedOption[optionText] : placeholder
-        }}</slot
       >
+        <span>
+          {{ value || value === 0 ? selectedOption[optionText] : placeholder }}
+        </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.0"
+          width="14"
+          height="14"
+          fill="#333333"
+          viewBox="0 -144 200 40"
+        >
+          <g
+            transform="scale(0.1,-0.1)"
+            stroke="none"
+          >
+            <path
+              d="M145 1488 c-33 -19 -44 -41 -45 -88 l0 -45 428 -427 427 -428 45 0 45 0 427 428 428 427 0 47 c0 39 -5 50 -31 72 -33 28 -67 33 -102 15 -12 -6 -184 -173 -382 -370 -204 -203 -368 -359 -378 -359 -10 0 -28 5 -40 11 -12 6 -184 173 -382 370 -314 312 -365 359 -390 359 -17 0 -39 -6 -50 -12z"
+            />
+          </g>
+        </svg>
+      </slot>
 
       <!-- Invisible select (for making the select required in a form) -->
       <select
@@ -804,6 +822,8 @@ function optionClasses(option) {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
 .invisible-select {
