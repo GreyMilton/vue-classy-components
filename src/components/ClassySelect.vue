@@ -520,12 +520,15 @@ function optionIsDisabled(option) {
 }
 
 function optionIsHighlighted(option) {
-  return option[props.optionValue] === highlightedOption[props.optionValue];
+  return (
+    option[props.optionValue] === highlightedOption.value[props.optionValue]
+  );
 }
 
 function select(option) {
   if (!optionIsDisabled(option)) {
     value.value = option[props.optionValue];
+    toggleDropdown();
   }
 }
 
@@ -765,6 +768,12 @@ function optionClasses(option) {
     </ul>
 
     <div
+      v-if="dropdownOpen"
+      class="invisible-overlay"
+      @click="toggleDropdown"
+    />
+
+    <div
       v-if="showValidationMessage"
       :class="[
         classySelectValidationMessage,
@@ -816,8 +825,19 @@ function optionClasses(option) {
   list-style: none;
 }
 
+.invisible-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
 .classy-select-container {
   background-color: white;
+  position: relative;
 }
 .classy-select-ready-container {
 }
@@ -852,7 +872,7 @@ function optionClasses(option) {
   background-color: white;
   width: 100%;
 }
-.classy-select:focus-visible {
+.classy-select:focus {
   outline: #efd785 solid 6px;
 }
 .classy-select-ready {
@@ -898,9 +918,14 @@ function optionClasses(option) {
 .classy-select-dropdown {
   border: 2px solid #565656;
   border-radius: 0.4rem;
-  padding: 4px 6px 4px 6px;
+  padding: 4px 0px 4px 0px;
   font-size: 0.9rem;
   background-color: white;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
 }
 .classy-select-ready-dropdown {
 }
@@ -923,6 +948,8 @@ function optionClasses(option) {
 }
 
 .classy-select-dropdown-item {
+  font-size: 14px;
+  padding: 1px 6px 1px 6px;
 }
 .classy-select-ready-dropdown-item {
 }
@@ -934,6 +961,7 @@ function optionClasses(option) {
 }
 
 .classy-select-dropdown-item-highlighted {
+  background-color: #dadada;
 }
 .classy-select-ready-dropdown-item-highlighted {
 }
@@ -945,6 +973,9 @@ function optionClasses(option) {
 }
 
 .classy-select-dropdown-item-enabled {
+}
+.classy-select-dropdown-item-enabled:hover {
+  background-color: #dadada;
 }
 .classy-select-ready-dropdown-item-enabled {
 }
